@@ -16,18 +16,15 @@
 
 ;; Set up package.el with MELPA
 (require 'package)
-
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
-(when (< emacs-major-version 24)
+(when (version< emacs-version "24.3")
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
-
 (package-initialize)
 
 (defun ensure-package-installed (&rest packages)
     "Assure every package is installed, ask for installation if it’s not.
-
 Return a list of installed packages or nil for every skipped package."
     (mapcar
      (lambda (package)
@@ -45,7 +42,7 @@ Return a list of installed packages or nil for every skipped package."
     (package-refresh-contents))
 
 ;; Auto-install packages
-(ensure-package-installed 'lua-mode 'dockerfile-mode)
+(ensure-package-installed 'lua-mode 'dockerfile-mode 'zenburn-theme)
 (when (< emacs-major-version 24) && (< emacs-minor-version 4)
     (ensure-package-installed 'systemd))
 
@@ -58,9 +55,9 @@ Return a list of installed packages or nil for every skipped package."
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-log-done t)
-;;(setq org-todo-keywords (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!)" )
-;;                               (sequence "WAITING(w@/!)" "SOMEDAY(S!)" "TESTING(T)" "|" "CANCELLED(c@/!)" )))) 
-;;(setq org-treat-S-cursor-todo-selection-as-state-change nil)
+(setq org-todo-keywords (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!)" )
+                               (sequence "WAITING(w@/!)" "SOMEDAY(S!)" "TESTING(T)" "|" "CANCELLED(c@/!)" )))) 
+(setq org-treat-S-cursor-todo-selection-as-state-change nil)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;
@@ -77,8 +74,8 @@ Return a list of installed packages or nil for every skipped package."
 
 (blink-cursor-mode (- (*) (*) (*)))
 (setq visible-cursor nil)
+
 ;; Zenburn theme by default
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'zenburn t)
 
 ;; File mode magic
