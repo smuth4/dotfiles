@@ -1,0 +1,53 @@
+# OS-dependant aliases
+# FreeBSD hates ls
+if [[ $OSTYPE != freebsd* ]]; then 
+  alias ls='ls --color=auto'
+  eval $(dircolors -b)
+fi
+
+# Ansible
+alias ap='ansible-playbook'
+
+# Modified commands
+alias emacs='emacs -nw'
+alias grep='grep --color=auto -D skip'
+alias ping='ping -c 5'
+alias du='du -kh'       # Makes a more readable output.
+alias df='df -kTh'
+
+# Moving around
+alias ..="cd .."
+alias ...="cd ../.."
+
+# Modify ls
+alias lL='ls -lL'
+alias ll='ls -lh'
+alias la='ll -A'
+alias lx='ll -BX'                   # sort by extension
+alias lz='ll -rS'                   # sort by size
+alias lt='ll -rlt'                   # sort by date
+alias lm='la -U | less'
+
+# Slightly dangerous stuff
+alias sui='sudo -iu'
+alias panic='tar cxvf ../panic.tar *' # First thing to do in an emergency? Back it up!
+
+# Misspellings
+alias eamcs='emacs'
+alias sl='ls'
+alias xs='cd'
+
+# Git aliases
+alias gcl='git clone'
+alias ga='git add'
+alias gall='git add .'
+alias g='git'
+alias gst='git status'
+alias gs='git status'
+alias gp='git push'
+alias gpom='git push origin master'
+alias gplom='git pull origin master'
+alias gc='git commit -v'
+
+# Tmux alias
+alias tmux='tmux -u2'

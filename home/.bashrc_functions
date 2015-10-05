@@ -1,0 +1,56 @@
+#!/bin/bash
+# Custom functions
+
+extract () {
+  if [ -f "$1" ] ; then
+    case "$1" in
+      *.tar.bz2)   tar xjf "$1";;
+      *.tar.gz)    tar xzf "$1";;
+      *.bz2)       bunzip2 "$1";;
+      *.rar)       rar x "$1";;
+      *.gz)        gunzip "$1";;
+      *.tar)       tar xf "$1";;
+      *.tbz2)      tar xjf "$1";;
+      *.tgz)       tar xzf "$1";;
+      *.zip)       unzip "$1";;
+      *.Z)         uncompress "$1";;
+      *.7z)        7z x "$1";;
+      *)           echo "'$1' cannot be extracted via extract()";;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+solve () { 
+  echo "scale=4; $@" | bc;
+}
+
+gcm () {
+  git commit -m "$1"
+}
+
+# Git prompt                                                                                                                              
+git_prompt () {
+  GIT_DIR="$(git rev-parse --git-dir 2>/dev/null)"
+  if [ -z "$GIT_DIR" ]; then
+    return 0
+  fi
+  GIT_HEAD="$(cat $GIT_DIR/HEAD)"
+  GIT_BRANCH=${GIT_HEAD##*/}
+  if [ ${#GIT_BRANCH} -eq 40 ]; then
+    GIT_BRANCH="(no branch)"
+  fi
+  STATUS="$(git status --porcelain)"
+  if [ -z "$STATUS" ]; then
+    git_marker=""
+  else
+    echo -e "$STATUS" | grep -q '^ [A-Z\?]'
+    if [ $? -eq 0 ]; then
+      git_marker="*"
+    else
+      git_marker="+"
+    fi
+  fi
+  echo -e " ($GIT_BRANCH$git_marker)"
+}
