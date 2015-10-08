@@ -43,8 +43,9 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; Auto-install packages
 (ensure-package-installed 'lua-mode 'dockerfile-mode 'zenburn-theme)
-(when (< emacs-major-version 24) && (< emacs-minor-version 4)
-    (ensure-package-installed 'systemd))
+;; Version checks
+(when (version< emacs-version "24.3")
+    (ensure-package-installed 'systemd 'magit))
 
 ;; Re-initialize
 (package-initialize)
@@ -64,16 +65,28 @@ Return a list of installed packages or nil for every skipped package."
 ;; File formatting
 ;;;;;;;;;;;;;;;;;;;;;;
 
+;; NO TABS
 (setq-default indent-tabs-mode nil)
-(setq require-final-newline t)
+;; Change shell indentation to personal preference
 (add-hook 'sh-mode-hook (lambda () (setq sh-basic-offset 2 sh-indentation 2)))
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Display
 ;;;;;;;;;;;;;;;;;;;;;;
 
+;; NO BLINKING
+;;; It's still posssible for the terminal to make it blink
 (blink-cursor-mode (- (*) (*) (*)))
 (setq visible-cursor nil)
+
+;; Transform literal tabs into a right-pointing triangle
+(setq
+ whitespace-display-mappings ;http://ergoemacs.org/emacs/whitespace-mode.html
+ '(
+   (tab-mark 9 [9654 9] [92 9])
+   ;others substitutions...
+   ))
+(setq require-final-newline t)
 
 ;; Zenburn theme by default
 (load-theme 'zenburn t)
