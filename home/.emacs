@@ -51,6 +51,13 @@ Return a list of installed packages or nil for every skipped package."
 (package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;
+;; Version Control
+;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "C-x g") 'magit-status)
+
+
+;;;;;;;;;;;;;;;;;;;;;;
 ;; Org-mode
 ;;;;;;;;;;;;;;;;;;;;;;
 
