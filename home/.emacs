@@ -66,7 +66,8 @@ Return a list of installed packages or nil for every skipped package."
 (setq org-todo-keywords (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!)" )
                                (sequence "WAITING(w@/!)" "SOMEDAY(S!)" "TESTING(T)" "|" "CANCELLED(c@/!)" )))) 
 (setq org-treat-S-cursor-todo-selection-as-state-change nil)
-
+(setq org-agenda-files (quote ("~/org")))
+(global-set-key "\C-ca" 'org-agenda)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; File formatting
