@@ -1,3 +1,4 @@
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Check for an interactive session
 [ -z "$PS1" ] && return
