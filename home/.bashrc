@@ -1,4 +1,5 @@
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+# Hardcode $PATH, primarily for debian
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
 # Check for an interactive session
 [ -z "$PS1" ] && return
@@ -46,7 +47,7 @@ ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias 
 
 # For FreeBSD
 [[ -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
-    source /usr/local/share/bash-completion/bash_completion.sh
+  source /usr/local/share/bash-completion/bash_completion.sh
 
 PS1='[\u@\h \W]$(git_prompt)\$ ' # the git_prompt function is in the .bashrc_functions file
 
@@ -76,9 +77,9 @@ echo -ne $red; uname -smr
 echo -ne $blue; date
 echo -ne $NC
 if [ -x /usr/games/fortune ]; then
-    /usr/games/fortune -s     # makes our day a bit more fun
+  /usr/games/fortune -s     # makes our day a bit more fun
 elif [ -x /usr/bin/fortune ]; then
-    /usr/bin/fortune -s
+  /usr/bin/fortune -s
 fi
 
 echo -ne $NC
