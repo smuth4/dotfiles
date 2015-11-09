@@ -56,7 +56,7 @@ PS1='[\u@\h \W]$(git_prompt)\$ ' # the git_prompt function is in the .bashrc_fun
 if [[ -e "$HOME/.homesick/repos/homeshick/homeshick.sh" ]]; then
   source "$HOME/.homesick/repos/homeshick/homeshick.sh"
   source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
-  homeshick --batch --quiet refresh
+  homeshick --quiet refresh 2
 fi
 
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
