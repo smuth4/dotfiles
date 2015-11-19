@@ -42,7 +42,7 @@ Return a list of installed packages or nil for every skipped package."
     (package-refresh-contents))
 
 ;; Auto-install packages
-(ensure-package-installed 'lua-mode 'dockerfile-mode 'zenburn-theme 'yaml-mode)
+(ensure-package-installed 'lua-mode 'dockerfile-mode 'zenburn-theme 'yaml-mode 'markdown-mode)
 ;; Version checks
 (when (not (version< emacs-version "24.3"))
     (ensure-package-installed 'systemd 'magit))
@@ -55,7 +55,6 @@ Return a list of installed packages or nil for every skipped package."
 ;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key (kbd "C-x g") 'magit-status)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Org-mode
