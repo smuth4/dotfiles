@@ -44,7 +44,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; Auto-install packages
 (ensure-package-installed 'lua-mode 'dockerfile-mode 'zenburn-theme 'yaml-mode)
 ;; Version checks
-(when (version< emacs-version "24.3")
+(when (not (version< emacs-version "24.3"))
     (ensure-package-installed 'systemd 'magit))
 
 ;; Re-initialize
