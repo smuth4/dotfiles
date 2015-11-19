@@ -56,7 +56,6 @@ Return a list of installed packages or nil for every skipped package."
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Org-mode
 ;;;;;;;;;;;;;;;;;;;;;;
