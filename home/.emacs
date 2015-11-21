@@ -42,10 +42,21 @@ Return a list of installed packages or nil for every skipped package."
     (package-refresh-contents))
 
 ;; Auto-install packages
-(ensure-package-installed 'lua-mode 'dockerfile-mode 'zenburn-theme 'yaml-mode 'markdown-mode)
+(ensure-package-installed
+ 'lua-mode
+ 'dockerfile-mode
+ 'zenburn-theme
+ 'yaml-mode
+ 'markdown-mode
+ 'flycheck
+ )
+
 ;; Version checks
 (when (not (version< emacs-version "24.3"))
-    (ensure-package-installed 'systemd 'magit))
+  (ensure-package-installed
+   'systemd
+   'magit
+   ))
 
 ;; Re-initialize
 (package-initialize)
@@ -102,6 +113,8 @@ Return a list of installed packages or nil for every skipped package."
 (add-to-list 'auto-mode-alist '("\\.service\\'" . systemd-mode))
 (add-to-list 'auto-mode-alist '("\\.mount\\'" . systemd-mode))
 (add-to-list 'auto-mode-alist '("\\.socket\\'" . systemd-mode))
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; System customizations
