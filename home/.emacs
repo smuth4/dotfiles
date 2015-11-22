@@ -1,7 +1,6 @@
 ;;; .emacs --- My emacs config file
 ;;; Commentary:
 
-
 ;; Not much special goes on here
 
 ;;; Code:
@@ -124,6 +123,12 @@ Return a list of installed packages or nil for every skipped package."
 (add-to-list 'auto-mode-alist '("\\.socket\\'" . systemd-mode))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+
+(add-hook 'window-setup-hook 'on-after-init)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; System customizations
