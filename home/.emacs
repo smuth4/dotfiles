@@ -1,3 +1,11 @@
+;;; .emacs --- My emacs config file
+;;; Commentary:
+
+
+;; Not much special goes on here
+
+;;; Code:
+
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc
 ;;;;;;;;;;;;;;;;;;;;;;
@@ -11,7 +19,7 @@
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;
-;; Packages
+;; Package
 ;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Set up package.el with MELPA
@@ -23,15 +31,16 @@
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
+;; PACKAGES
 (defun ensure-package-installed (&rest packages)
-    "Assure every package is installed, ask for installation if it’s not.
+    "Assure PACKAGES are installed, ask for installation if it’s not.
 Return a list of installed packages or nil for every skipped package."
     (mapcar
      (lambda (package)
        ;; (package-installed-p 'evil)
        (if (package-installed-p package)
            nil
-         (if (y-or-n-p (format "Package %s is missing. Install it? " package))
+         (if (y-or-n-p (format "Package %s is missing.  Install it? " package))
              (package-install package)
            package)))
      packages))
@@ -74,7 +83,7 @@ Return a list of installed packages or nil for every skipped package."
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-log-done t)
 (setq org-todo-keywords (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!)" )
-                               (sequence "WAITING(w@/!)" "SOMEDAY(S!)" "TESTING(T)" "|" "CANCELLED(c@/!)" )))) 
+                               (sequence "WAITING(w@/!)" "SOMEDAY(S!)" "TESTING(T)" "|" "CANCELLED(c@/!)" ))))
 (setq org-treat-S-cursor-todo-selection-as-state-change nil)
 (setq org-agenda-files (quote ("~/org")))
 (global-set-key "\C-ca" 'org-agenda)
@@ -135,3 +144,7 @@ Return a list of installed packages or nil for every skipped package."
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  )
+
+(provide '.emacs)
+
+;;; .emacs ends here
