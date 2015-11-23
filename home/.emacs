@@ -60,7 +60,7 @@ Return a list of installed packages or nil for every skipped package."
  )
 
 ;; Version checks
-(when (not (version< emacs-version "24.3"))
+(when (not (version< emacs-version "24.4"))
   (ensure-package-installed
    'systemd
    'magit
