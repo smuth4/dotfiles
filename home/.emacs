@@ -10,12 +10,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key (kbd "<f7>") 'compile)
-(setq vc-follow-symlinks t)
-(setq
-   backup-by-copying t
-   backup-directory-alist
-    '(("." . "~/.emacs.d/backups"))
-)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Package
@@ -43,6 +37,15 @@ Return a list of installed packages or nil for every skipped package."
              (package-install package)
            package)))
      packages))
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(setq use-package-verbose t)
+(require 'use-package)
+(use-package auto-compile
+             :ensure t
+             :config (auto-compile-on-load-mode))
+(setq load-prefer-newer t)
 
 ;; make sure to have downloaded archive description.
 ;; Or use package-archive-contents as suggested by Nicolas Dudebout
@@ -86,24 +89,18 @@ Return a list of installed packages or nil for every skipped package."
 (setq org-treat-S-cursor-todo-selection-as-state-change nil)
 (setq org-agenda-files (quote ("~/org")))
 (global-set-key "\C-ca" 'org-agenda)
+(setq org-archive-location "archive.org::")
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; File formatting
 ;;;;;;;;;;;;;;;;;;;;;;
 
-;; NO TABS
-(setq-default indent-tabs-mode nil)
 ;; Change shell indentation to personal preference
 (add-hook 'sh-mode-hook (lambda () (setq sh-basic-offset 2 sh-indentation 2)))
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Display
 ;;;;;;;;;;;;;;;;;;;;;;
-
-;; NO BLINKING
-;;; It's still posssible for the terminal to make it blink
-(blink-cursor-mode (- (*) (*) (*)))
-(setq visible-cursor nil)
 
 ;; Transform literal tabs into a right-pointing triangle
 (setq
@@ -152,4 +149,9 @@ Return a list of installed packages or nil for every skipped package."
 
 (provide '.emacs)
 
-;;; .emacs ends here
+;;;;;;;;;;;;;;;;;;;;;;
+;; Start moving stuff to org-babel
+;;;;;;;;;;;;;;;;;;;;;;
+
+(setq package-enable-at-startup nil)
+(org-babel-load-file "~/.emacs.d/emacs.org")
