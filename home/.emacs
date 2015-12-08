@@ -3,6 +3,8 @@
 
 ;; Not much special goes on here
 
+(setq vc-follow-symlinks t)
+
 ;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;
@@ -26,7 +28,7 @@
 
 ;; PACKAGES
 (defun ensure-package-installed (&rest packages)
-    "Assure PACKAGES are installed, ask for installation if it’s not.
+    "Assure PACKAGES are installed, ask for installation if it's not.
 Return a list of installed packages or nil for every skipped package."
     (mapcar
      (lambda (package)
@@ -87,7 +89,7 @@ Return a list of installed packages or nil for every skipped package."
 (setq org-todo-keywords (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!)" )
                                (sequence "WAITING(w@/!)" "SOMEDAY(S!)" "TESTING(T)" "|" "CANCELLED(c@/!)" ))))
 (setq org-treat-S-cursor-todo-selection-as-state-change nil)
-(setq org-agenda-files (quote ("~/org")))
+(setq org-agenda-files (quote ("~/org/")))
 (global-set-key "\C-ca" 'org-agenda)
 (setq org-archive-location "archive.org::")
 
@@ -109,7 +111,6 @@ Return a list of installed packages or nil for every skipped package."
    (tab-mark 9 [9654 9] [92 9])
    ;others substitutions...
    ))
-(setq require-final-newline t)
 
 ;; Zenburn theme by default
 (load-theme 'zenburn t)
@@ -119,7 +120,7 @@ Return a list of installed packages or nil for every skipped package."
 (add-to-list 'auto-mode-alist '("\\.mount\\'" . systemd-mode))
 (add-to-list 'auto-mode-alist '("\\.socket\\'" . systemd-mode))
 
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (defun on-after-init ()
   (unless (display-graphic-p (selected-frame))
@@ -147,11 +148,12 @@ Return a list of installed packages or nil for every skipped package."
   ;; If there is more than one, they won't work right.
  )
 
-(provide '.emacs)
-
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Start moving stuff to org-babel
 ;;;;;;;;;;;;;;;;;;;;;;
 
-(setq package-enable-at-startup nil)
+;(setq package-enable-at-startup nil)
 (org-babel-load-file "~/.emacs.d/emacs.org")
+
+(provide '.emacs)
+;;;

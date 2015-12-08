@@ -4,9 +4,18 @@
 ** http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.html
 ** https://github.com/sachac/.emacs.d/blob/gh-pages/Sacha.org
 * Config
-** Version control and backups
+  :PROPERTIES:
+  :CUSTOM_ID: config
+  :END:
+** Display
+*** No menu bar
+
 #+BEGIN_SRC emacs-lisp
-(setq vc-follow-symlinks t)
+(menu-bar-mode 0)
+#+END_SRC
+
+*** Version control and backups
+#+BEGIN_SRC emacs-lisp
 (setq
    backup-by-copying t
    backup-directory-alist
@@ -14,17 +23,47 @@
 )
 #+END_SRC
 
-** No blinking cursor
+*** No blinking cursor
 
 Unfortunately, it's possible for the terminal to make it blink anyway.
 #+BEGIN_SRC emacs-lisp
 (blink-cursor-mode (- (*) (*) (*)))
 (setq visible-cursor nil)
+(message "Minibuffer depth is asdfsadf.")
 #+END_SRC
 
-** No tabs
+*** No tabs
 
 Ever, if I ruled the world.
 #+BEGIN_SRC emacs-lisp
 (setq-default indent-tabs-mode nil)
 #+END_SRC
+
+*** Require a final newline on files
+
+#+BEGIN_SRC emacs-lisp
+(setq require-final-newline t)
+#+END_SRC
+
+*** Zenburn by default
+
+#+BEGIN_SRC 
+(load-theme 'zenburn t)
+#+END_SRC
+
+*** UTF-8
+
+#+BEGIN_SRC emacs-lisp
+(prefer-coding-system 'utf-8)
+(when (display-graphic-p)
+  (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
+#+END_SRC
+
+** Org-mode
+*** Show expanded
+#+BEGIN_SRC emacs-lisp
+(setq org-startup-folded nil)
+#+END_SRC
+
+* Import the config
+<<config>>
