@@ -65,5 +65,30 @@ Ever, if I ruled the world.
 (setq org-startup-folded nil)
 #+END_SRC
 
+** Package stuffs
+*** Set up use-package independently
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(setq use-package-verbose t)
+(require 'use-package)
+(use-package auto-compile
+  :ensure t
+  :config (auto-compile-on-load-mode))
+(require 'auto-complete)
+#+END_SRC
+
+*** Language packages
+
+**** Ruby
+
+#+BEGIN_SRC emacs-lisp
+(use-package robe
+     :ensure t :defer t
+     :init
+     (progn (add-hook 'ruby-mode-hook 'robe-mode)
+            (add-hook 'robe-mode-hook 'ac-robe-setup)))
+#+END_SRC
+
 * Import the config
 <<config>>
