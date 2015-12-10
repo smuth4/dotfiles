@@ -75,6 +75,8 @@ Ever, if I ruled the world.
 (use-package auto-compile
   :ensure t
   :config (auto-compile-on-load-mode))
+(unless (package-installed-p 'auto-complete)
+  (package-install 'auto-complete))
 (require 'auto-complete)
 #+END_SRC
 
