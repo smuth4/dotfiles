@@ -84,6 +84,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; Org-mode
 ;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-log-done t)
 (setq org-todo-keywords (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!)" )
@@ -156,4 +157,4 @@ Return a list of installed packages or nil for every skipped package."
 (org-babel-load-file "~/.emacs.d/emacs.org")
 
 (provide '.emacs)
-;;;
+;;; .emacs ends here
