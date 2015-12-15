@@ -59,6 +59,7 @@ alias v='vagrant'
 alias vp='vagrant provision'
 alias vup='vagrant up'
 alias vssh='vagrant ssh'
+alias vstatus='vagrant global-status'
 
 # virtualenv
 alias venv='source ~/venv/bin/activate'
