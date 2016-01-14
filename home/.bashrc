@@ -5,13 +5,13 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 [ -z "$PS1" ] && return
 
 # Define some colors first:
-red='\e[0;31m'
-RED='\e[1;31m'
-blue='\e[0;34m'
-BLUE='\e[1;34m'
-cyan='\e[0;36m'
-CYAN='\e[1;36m'
-NC='\e[0m'              # No Color
+red='\033[0;31m'
+RED='\033[1;31m'
+blue='\033[0;34m'
+BLUE='\033[1;34m'
+cyan='\033[0;36m'
+CYAN='\033[1;36m'
+NC='\033[0m'              # No Color
 
 export HISTFILESIZE=300000    # save 300000 commands
 export HISTCONTROL=ignoredups    # no duplicate lines in the history.
@@ -40,7 +40,7 @@ fi
 if ! pgrep ssh-agent > /dev/null; then
   ssh-agent > ~/.ssh-agent-thing
 fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
+if [[ "$SSH_AGENT_PID" == "" && -e ~/.ssh-agent-thing ]]; then
   eval $(<~/.ssh-agent-thing)
 fi
 ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
