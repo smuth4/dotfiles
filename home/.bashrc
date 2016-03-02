@@ -29,6 +29,10 @@ export PAGER=less
 shopt -u mailwarn
 unset MAILCHECK
 
+# Turn the useless Ctrl-s/Ctrl-q commands
+stty stop undef
+stty start undef
+
 if [ -e ~/.bashrc_aliases ]; then
   . ~/.bashrc_aliases
 fi
