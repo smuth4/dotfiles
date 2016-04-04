@@ -68,6 +68,12 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
+if [[ -e /usr/share/terminfo/x/xterm-256color || -e /lib/terminfo/x/xterm-256color ]]; then
+  export TERM='xterm-256color'
+else
+  export TERM='xterm-color'
+fi
+
 # Import misc config files
 
 if [[ -e "$HOME/.bash.d" ]]; then
