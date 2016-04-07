@@ -29,7 +29,6 @@ Unfortunately, it's possible for the terminal to make it blink anyway.
 #+BEGIN_SRC emacs-lisp
 (blink-cursor-mode (- (*) (*) (*)))
 (setq visible-cursor nil)
-(message "Minibuffer depth is asdfsadf.")
 #+END_SRC
 
 *** No tabs
@@ -60,6 +59,21 @@ Ever, if I ruled the world.
 #+END_SRC
 
 ** Org-mode
+
+*** Set up a publishing project
+#+BEGIN_SRC emacs-lisp
+(setq org-publish-project-alist
+      '(("org"
+         :base-directory "~/org/"
+         :publishing-directory "~/public_html"
+         :section-numbers nil
+         :table-of-contents nil
+         :publishing-function org-html-publish-to-html
+         :style "<link rel=\"stylesheet\"
+                href=\"../other/mystyle.css\"
+                type=\"text/css\"/>")))
+#+END_SRC
+
 *** Show expanded
 #+BEGIN_SRC emacs-lisp
 (setq org-startup-folded nil)
