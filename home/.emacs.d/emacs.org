@@ -86,8 +86,68 @@ Ever, if I ruled the world.
   (package-install 'auto-complete))
 (require 'auto-complete)
 #+END_SRC
+*** Packages
+**** Flycheck
+
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :ensure t
+  :init
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+#+END_SRC
+
+**** Magit
+
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t
+  :commands (magit-init
+             magit-status
+             magit-diff
+             magit-commit)
+  :bind (("C-x g" . magit-status)))
+#+END_SRC
 
 *** Language packages
+**** Markdown
+
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :mode "\\.md$")
+#+END_SRC
+
+**** JSON
+
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :mode "\\.json$")
+#+END_SRC
+
+**** YAML
+
+#+BEGIN_SRC emacs-lisp
+(use-package yaml-mode
+  :ensure t
+  :mode "\\.yml$")
+#+END_SRC
+
+**** Docker
+
+#+BEGIN_SRC emacs-lisp
+(use-package dockerfile-mode
+  :ensure t
+  :mode "^Dockerfile$")
+#+END_SRC
+
+**** LUA
+
+#+BEGIN_SRC emacs-lisp
+(use-package lua-mode
+  :ensure t
+  :mode "\\.lua$")
+#+END_SRC
 
 **** Ruby
 

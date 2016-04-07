@@ -41,13 +41,14 @@ Return a list of installed packages or nil for every skipped package."
      packages))
 
 (unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-(setq use-package-verbose t)
-(require 'use-package)
-(use-package auto-compile
-             :ensure t
-             :config (auto-compile-on-load-mode))
-(setq load-prefer-newer t)
+  (progn
+    (package-refresh-contents)
+    (package-install 'use-package)
+    (package-initialize)))
+
+(eval-and-compile
+  (defvar use-package-verbose t)
+  (require 'use-package))
 
 ;; make sure to have downloaded archive description.
 ;; Or use package-archive-contents as suggested by Nicolas Dudebout
@@ -56,12 +57,7 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; Auto-install packages
 (ensure-package-installed
- 'lua-mode
- 'dockerfile-mode
  'zenburn-theme
- 'yaml-mode
- 'markdown-mode
- 'flycheck
  )
 
 ;; Version checks
