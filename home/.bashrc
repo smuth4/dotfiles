@@ -68,7 +68,9 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
-if [[ -e /usr/share/terminfo/x/xterm-256color || -e /lib/terminfo/x/xterm-256color ]]; then
+if [[ -e /usr/share/terminfo/x/xterm-256color || \
+        -e /lib/terminfo/x/xterm-256color || \
+        -e /opt/local/share/terminfo/78/xterm-256color ]]; then # OS X
   export TERM='xterm-256color'
 else
   export TERM='xterm-color'
