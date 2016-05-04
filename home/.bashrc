@@ -76,6 +76,11 @@ else
   export TERM='xterm-color'
 fi
 
+if hash go 2>/dev/null; then
+  export GOPATH=$HOME/work
+  export PATH="$PATH:$GOPATH/bin"
+fi
+
 # Import misc config files
 
 if [[ -e "$HOME/.bash.d" ]]; then
