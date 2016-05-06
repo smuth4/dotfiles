@@ -199,8 +199,8 @@ buffer is not visiting a file."
 
 ** E-mail
 #+BEGIN_SRC emacs-lisp
-(require 'mu4e)
-
+(use-package mu4e
+  :commands (mu4e))
 ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
 (setq mu4e-sent-messages-behavior 'delete)
 
