@@ -63,3 +63,6 @@ alias vstatus='vagrant global-status'
 
 # virtualenv
 alias venv='source ~/venv/bin/activate'
+
+# File modification
+alias stripwhite="sed -i -e's/[[:space:]]*$//'"
