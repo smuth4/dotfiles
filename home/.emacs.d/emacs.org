@@ -46,7 +46,10 @@ Ever, if I ruled the world.
 
 *** Zenburn by default
 
-#+BEGIN_SRC 
+#+BEGIN_SRC
+(ensure-package-installed
+ 'zenburn-theme
+ )
 (load-theme 'zenburn t)
 #+END_SRC
 
@@ -127,7 +130,6 @@ Ever, if I ruled the world.
 
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
-  :ensure t
   :mode "\\.md$")
 #+END_SRC
 
@@ -135,7 +137,6 @@ Ever, if I ruled the world.
 
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
-  :ensure t
   :mode "\\.json$")
 #+END_SRC
 
@@ -143,7 +144,6 @@ Ever, if I ruled the world.
 
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
-  :ensure t
   :mode "\\.yml$")
 #+END_SRC
 
@@ -151,7 +151,6 @@ Ever, if I ruled the world.
 
 #+BEGIN_SRC emacs-lisp
 (use-package dockerfile-mode
-  :ensure t
   :mode "^Dockerfile$")
 #+END_SRC
 
@@ -159,7 +158,6 @@ Ever, if I ruled the world.
 
 #+BEGIN_SRC emacs-lisp
 (use-package lua-mode
-  :ensure t
   :mode "\\.lua$")
 #+END_SRC
 
@@ -167,7 +165,7 @@ Ever, if I ruled the world.
 
 #+BEGIN_SRC emacs-lisp
 (use-package robe
-     :ensure t :defer t
+     :defer t
      :init
      (progn (add-hook 'ruby-mode-hook 'robe-mode)
             (add-hook 'robe-mode-hook 'ac-robe-setup)))

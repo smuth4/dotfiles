@@ -27,19 +27,6 @@
 (package-initialize)
 
 ;; PACKAGES
-(defun ensure-package-installed (&rest packages)
-    "Assure PACKAGES are installed, ask for installation if it's not.
-Return a list of installed packages or nil for every skipped package."
-    (mapcar
-     (lambda (package)
-       ;; (package-installed-p 'evil)
-       (if (package-installed-p package)
-           nil
-         (if (y-or-n-p (format "Package %s is missing.  Install it? " package))
-             (package-install package)
-           package)))
-     packages))
-
 (unless (package-installed-p 'use-package)
   (progn
     (package-refresh-contents)
@@ -56,16 +43,6 @@ Return a list of installed packages or nil for every skipped package."
     (package-refresh-contents))
 
 ;; Auto-install packages
-(ensure-package-installed
- 'zenburn-theme
- )
-
-;; Version checks
-(when (not (version< emacs-version "24.4"))
-  (ensure-package-installed
-   'systemd
-   'magit
-   ))
 
 ;; Re-initialize
 (package-initialize)
