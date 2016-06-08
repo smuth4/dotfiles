@@ -47,8 +47,9 @@ Ever, if I ruled the world.
 *** Zenburn by default
 
 #+BEGIN_SRC
-(ensure-package-installed
- 'zenburn-theme
+(use-package
+ zenburn-theme
+ :ensure t
  )
 (load-theme 'zenburn t)
 #+END_SRC
