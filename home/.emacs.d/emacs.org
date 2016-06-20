@@ -190,10 +190,57 @@ buffer is not visiting a file."
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 #+END_SRC
 
+*** Replace region after piping it through bc
+#+BEGIN_SRC emacs-lisp
+(defun fc-calculate-region (start end &optional prefix)
+  "Evaluate the mathematical expression within the region, and
+replace it with its result.
+
+With a prefix arg, do not replace the region, but instead put the
+result into the kill ring."
+  (interactive "r\nP")
+  (let* ((expr (buffer-substring start end))
+         (result (fc-bc-calculate-expression expr))
+         (ends-with-newline (string-match "\n$" expr)))
+    (if prefix
+        (progn
+          (kill-new result)
+          (message "%s" result))
+      (delete-region start end)
+      (insert result)
+      (when ends-with-newline
+        (insert "\n")))))
+
+(defun fc-bc-calculate-expression (expr)
+  "Evaluate `expr' as a mathematical expression, and return its result.
+
+This actually pipes `expr' through bc(1), replacing newlines with
+spaces first. If bc(1) encounters an error, an error is
+signalled."
+  (with-temp-buffer
+    (insert expr)
+    (goto-char (point-min))
+    (while (search-forward "\n" nil t)
+      (replace-match " " nil t))
+    (goto-char (point-max))
+    (insert "\n")
+    (call-process-region (point-min)
+                          (point-max)
+                         "bc" t t nil "-lq")
+    (goto-char (point-min))
+    (when (search-forward "error" nil t)
+      (error "Bad expression"))
+    (while (search-forward "\n" nil t)
+      (replace-match "" nil t))
+    (buffer-string)))
+#+END_SRC
+
+
 *** Bind keys
 
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x C-r") 'sudo-edit)
+(global-set-key (kbd "C-c m") 'fc-calculate-region)
 #+END_SRC
 
 ** E-mail
@@ -220,5 +267,8 @@ buffer is not visiting a file."
 ;; allow for updating mail using 'U' in the main view:
 (setq mu4e-get-mail-command "offlineimap")
 #+END_SRC
+
+** Shortcuts
+
 * Import the config
 <<config>>
