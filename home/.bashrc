@@ -29,9 +29,12 @@ export PAGER=less
 shopt -u mailwarn
 unset MAILCHECK
 
-# Turn the useless Ctrl-s/Ctrl-q commands
+# Turn the useless Ctrl-s/Ctrl-q commands off
 stty stop undef
 stty start undef
+
+# Stop debian from telling me what command I meant to use
+unset command_not_found_handle
 
 if [ -e ~/.bashrc_aliases ]; then
   . ~/.bashrc_aliases
