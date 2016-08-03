@@ -66,3 +66,6 @@ alias venv='source ~/venv/bin/activate'
 
 # File modification
 alias stripwhite="sed -i -e's/[[:space:]]*$//'"
+
+# Get external IP
+alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
