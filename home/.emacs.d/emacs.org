@@ -44,6 +44,16 @@ Ever, if I ruled the world.
 (setq require-final-newline t)
 #+END_SRC
 
+*** Make parent directory automatically
+
+#+BEGIN_SRC emacs-lisp
+(defun make-parent-directory ()
+  "Make sure the directory of `buffer-file-name' exists."
+  (make-directory (file-name-directory buffer-file-name) t))
+
+(add-hook 'find-file-not-found-functions #'make-parent-directory)
+#+END_SRC
+
 *** Zenburn by default
 
 #+BEGIN_SRC
