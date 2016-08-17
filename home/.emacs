@@ -82,9 +82,6 @@
    ;others substitutions...
    ))
 
-;; Zenburn theme by default
-(load-theme 'zenburn t)
-
 ;; File mode magic
 (add-to-list 'auto-mode-alist '("\\.service\\'" . systemd-mode))
 (add-to-list 'auto-mode-alist '("\\.mount\\'" . systemd-mode))
