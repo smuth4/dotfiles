@@ -44,7 +44,7 @@ if [ -e ~/.bashrc_functions ]; then
   . ~/.bashrc_functions
 fi
 
-if ! pgrep ssh-agent > /dev/null; then
+if ! pgrep -u "$UID" ssh-agent > /dev/null; then
   ssh-agent > ~/.ssh-agent-thing
 fi
 if [[ "$SSH_AGENT_PID" == "" && -e ~/.ssh-agent-thing ]]; then
