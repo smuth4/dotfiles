@@ -54,6 +54,9 @@ alias gc='git commit -v'
 # Tmux alias
 alias tmux='tmux -u2'
 
+# mu4e
+alias mu4e='emacs -f mu4e'
+
 # Vagrant
 alias v='vagrant'
 alias vp='vagrant provision'
