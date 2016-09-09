@@ -147,7 +147,7 @@ Ever, if I ruled the world.
 **** JSON
 
 #+BEGIN_SRC emacs-lisp
-(use-package markdown-mode
+(use-package json-mode
   :mode "\\.json$")
 #+END_SRC
 
