@@ -84,6 +84,11 @@ if hash go 2>/dev/null; then
   export PATH="$PATH:$GOPATH/bin"
 fi
 
+if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+  export NVM_DIR="$HOME/.nvm"
+  source "$NVM_DIR/nvm.sh"
+fi
+
 # Import misc config files
 
 if [[ -e "$HOME/.bash.d" ]]; then
