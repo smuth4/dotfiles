@@ -199,7 +199,7 @@ Ever, if I ruled the world.
 
 #+BEGIN_SRC emacs-lisp
 (use-package robe
-     :defer t
+     :mode "\\.rb$"
      :init
      (progn (add-hook 'ruby-mode-hook 'robe-mode)
             (add-hook 'robe-mode-hook 'ac-robe-setup)))
