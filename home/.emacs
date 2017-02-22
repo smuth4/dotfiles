@@ -48,12 +48,6 @@
 (package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;
-;; Version Control
-;;;;;;;;;;;;;;;;;;;;;;
-
-(global-set-key (kbd "C-x g") 'magit-status)
-
-;;;;;;;;;;;;;;;;;;;;;;
 ;; Org-mode
 ;;;;;;;;;;;;;;;;;;;;;;
 
@@ -62,38 +56,6 @@
 (setq org-agenda-files (quote ("~/org/")))
 (global-set-key "\C-ca" 'org-agenda)
 (setq org-archive-location "archive.org::")
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; File formatting
-;;;;;;;;;;;;;;;;;;;;;;
-
-;; Change shell indentation to personal preference
-(add-hook 'sh-mode-hook (lambda () (setq sh-basic-offset 2 sh-indentation 2)))
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; Display
-;;;;;;;;;;;;;;;;;;;;;;
-
-;; Transform literal tabs into a right-pointing triangle
-(setq
- whitespace-display-mappings ;http://ergoemacs.org/emacs/whitespace-mode.html
- '(
-   (tab-mark 9 [9654 9] [92 9])
-   ;others substitutions...
-   ))
-
-;; File mode magic
-(add-to-list 'auto-mode-alist '("\\.service\\'" . systemd-mode))
-(add-to-list 'auto-mode-alist '("\\.mount\\'" . systemd-mode))
-(add-to-list 'auto-mode-alist '("\\.socket\\'" . systemd-mode))
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-(defun on-after-init ()
-  (unless (display-graphic-p (selected-frame))
-    (set-face-background 'default "unspecified-bg" (selected-frame))))
-
-(add-hook 'window-setup-hook 'on-after-init)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; System customizations

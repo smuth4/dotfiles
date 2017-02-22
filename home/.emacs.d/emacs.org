@@ -136,7 +136,15 @@ Ever, if I ruled the world.
   :bind (("C-x g" . magit-status)))
 #+END_SRC
 
-*** Language packages
+*** Languages
+
+**** Shell
+
+#+BEGIN_SRC emacs-lisp
+;; Change shell indentation to personal preference
+(add-hook 'sh-mode-hook (lambda () (setq sh-basic-offset 2 sh-indentation 2)))
+#+END_SRC
+
 **** Markdown
 
 #+BEGIN_SRC emacs-lisp
@@ -178,6 +186,14 @@ Ever, if I ruled the world.
 (use-package toml-mode
   :mode "\\.toml$")
 #+END_SRC
+
+**** Systemd
+
+#+BEGIN_SRC emacs-lisp
+(use-package systemd-mode
+  :mode "\\.(service|mount|socket)$")
+#+END_SRC
+
 
 **** Ruby
 
@@ -272,8 +288,13 @@ signalled."
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x C-r") 'sudo-edit)
 (global-set-key (kbd "C-c m") 'fc-calculate-region)
+(global-set-key (kbd "<f7>") 'compile)
 #+END_SRC
 
+*** Version control
+#+BEGIN_SRC emacs-lisp
+(setq vc-follow-symlinks t)
+#+END_SRC
 ** E-mail
 #+BEGIN_SRC emacs-lisp
 (use-package mu4e
