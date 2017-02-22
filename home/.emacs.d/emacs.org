@@ -56,7 +56,7 @@ Ever, if I ruled the world.
 
 *** Zenburn by default
 
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
 (use-package
  zenburn-theme
  :ensure t
