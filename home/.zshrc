@@ -5,7 +5,7 @@ PATH=$PATH:~/bin:~/.local/bin
 export PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/smuth/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 if [[ -e "$HOME/.zsh.d" ]]; then
   for f in "$HOME"/.zsh.d/*; do
