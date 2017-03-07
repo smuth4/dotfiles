@@ -26,17 +26,13 @@ solve () {
   echo "scale=4; $@" | bc;
 }
 
-gcm () {
-  git commit -m "$1"
-}
-
 # Git prompt                                                                                                                              
 git_prompt () {
   GIT_DIR="$(git rev-parse --git-dir 2>/dev/null)"
   if [ -z "$GIT_DIR" ]; then
     return 0
   fi
-  GIT_HEAD="$(cat $GIT_DIR/HEAD)"
+  GIT_HEAD="$(cat "$GIT_DIR"/HEAD)"
   GIT_BRANCH=${GIT_HEAD##*/}
   if [ ${#GIT_BRANCH} -eq 40 ]; then
     GIT_BRANCH="(no branch)"
