@@ -4,6 +4,15 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 PATH=$PATH:~/bin:~/.local/bin
 export PATH
 
+# Define some colors first:
+red='\033[0;31m'
+#RED='\033[1;31m'
+blue='\033[0;34m'
+#BLUE='\033[1;34m'
+cyan='\033[0;36m'
+#CYAN='\033[1;36m'
+NC='\033[0m'              # No Color
+
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
