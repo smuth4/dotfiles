@@ -17,6 +17,14 @@ fi
 if [ -e ~/.bashrc_aliases ]; then
   . ~/.bashrc_aliases
 fi
+if [ -e ~/.bashrc_functions ]; then
+  . ~/.bashrc_functions
+fi
+if [[ -e "$HOME/.bash.d" ]]; then
+  for f in "$HOME"/.bash.d/*; do
+    . "$f"
+  done
+fi
 
 # Turn the useless Ctrl-s/Ctrl-q commands off
 stty stop undef
