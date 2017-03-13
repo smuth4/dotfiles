@@ -72,6 +72,13 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
+if [[ -e /etc/lsb-relase ]]; then
+  if ! hash -r emacs; then
+    sudo apt install vile
+    alias emacs=vile
+  fi
+fi
+
 if [[ -e /usr/share/terminfo/x/xterm-256color || \
         -e /lib/terminfo/x/xterm-256color || \
         -e /opt/local/share/terminfo/78/xterm-256color ]]; then # OS X
