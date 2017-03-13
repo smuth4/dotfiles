@@ -282,18 +282,19 @@ signalled."
     (buffer-string)))
 #+END_SRC
 
-
 *** Bind keys
-
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x C-r") 'sudo-edit)
 (global-set-key (kbd "C-c m") 'fc-calculate-region)
 (global-set-key (kbd "<f7>") 'compile)
 #+END_SRC
-
 *** Version control
 #+BEGIN_SRC emacs-lisp
 (setq vc-follow-symlinks t)
+#+END_SRC
+*** Allow upcase region, I'm a smart enough fella
+#+BEGIN_SRC emacs-lisp
+(put 'upcase-region 'disabled nil)
 #+END_SRC
 ** E-mail
 #+BEGIN_SRC emacs-lisp
