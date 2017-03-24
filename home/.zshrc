@@ -22,6 +22,10 @@ if [[ -e "$HOME/.zsh.d" ]]; then
   done
 fi
 
+if [[ -e "$HOME/.zsh.completions.d" ]]; then
+  fpath=("$HOME/.zsh.completions.d" "${fpath[@]}")
+fi
+
 # Stealing straight from bash
 if [ -e ~/.bashrc_aliases ]; then
   . ~/.bashrc_aliases
