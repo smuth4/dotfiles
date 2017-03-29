@@ -74,6 +74,10 @@ if [[ -e "$HOME/.homesick/repos/homeshick/homeshick.sh" ]]; then
   homeshick --quiet --batch --force refresh
 fi
 
+if [[ -e "$HOME/.zsh.completions.d" ]]; then
+  fpath=("$HOME/.zsh.completions.d" "${fpath[@]}")
+fi
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
