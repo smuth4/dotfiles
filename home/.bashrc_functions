@@ -55,3 +55,7 @@ git_prompt () {
 ip-sort () {
   sort -n -t . -k 1,1 -k 2,2 -k 3,3 -k 4,4 "$@"
 }
+
+debchangelog () {
+  zless "/usr/share/doc/$1/changelog.Debian.gz"
+}
