@@ -74,3 +74,6 @@ alias stripwhite="sed -i -e's/[[:space:]]*$//'"
 
 # Get external IP
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+# k8s
+alias kc='kubectl --kubeconfig=kube_config'
