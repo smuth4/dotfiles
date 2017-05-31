@@ -3,6 +3,7 @@
 # FreeBSD hates ls
 if [[ $OSTYPE != freebsd* && $OSTYPE != darwin* ]]; then 
   alias ls='ls --color=auto'
+  # shellcheck disable=SC2046
   eval $(dircolors -b)
 fi
 

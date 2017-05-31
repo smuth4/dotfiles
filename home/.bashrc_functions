@@ -23,7 +23,7 @@ extract () {
 }
 
 solve () {
-  echo "scale=4; $@" | bc;
+  echo "scale=4; $*" | bc;
 }
 
 # Git prompt
