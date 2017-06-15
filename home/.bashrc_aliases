@@ -10,6 +10,8 @@ fi
 # Ansible
 alias ap='ansible-playbook'
 
+alias kc='kubectl --kubeconfig=kube_config'
+
 # Modified commands
 alias emacs='emacs -nw'
 alias grep='grep --color=auto -D skip'
