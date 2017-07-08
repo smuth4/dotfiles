@@ -218,15 +218,14 @@ Ever, if I ruled the world.
 **** HTML
 
 #+BEGIN_SRC emacs-lisp
-
 (use-package web-mode
   :mode "\\.html$"
   :bind (("C-c /" . web-mode-element-close))
   :init
   (progn (setq web-mode-code-indent-offset 2)
          (setq web-mode-markup-indent-offset 2)
-         (setq web-mode-css-indent-offset 2)))
-
+         (setq web-mode-css-indent-offset 2)
+         (setq web-mode-enable-engine-detection t)))
 #+END_SRC
 
 ** General configuration
