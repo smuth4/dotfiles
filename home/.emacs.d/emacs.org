@@ -336,6 +336,20 @@ signalled."
 
 ;; allow for updating mail using 'U' in the main view:
 (setq mu4e-get-mail-command "offlineimap")
+
+;; ref: http://emacs.readthedocs.io/en/latest/mu4e__email_client.html
+;; ref: http://emacs.stackexchange.com/questions/3051/how-can-i-use-eww-as-a-renderer-for-mu4e
+(defun my-render-html-message ()
+  (let ((dom (libxml-parse-html-region (point-min) (point-max))))
+    (erase-buffer)
+    (shr-insert-document dom)
+    (goto-char (point-min))))
+(setq mu4e-html2text-command 'my-render-html-message)
+;; endref
+
+;; give me ISO(ish) format date-time stamps in the header list
+(setq  mu4e-headers-date-format "%Y-%m-%d %H:%M")
+;; endref
 #+END_SRC
 
 ** Shortcuts
