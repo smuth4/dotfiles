@@ -121,7 +121,8 @@ Ever, if I ruled the world.
 (use-package flycheck
   :ensure t
   :init
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (setq flycheck-shellcheck-follow-sources nil))
 #+END_SRC
 
 **** Magit
