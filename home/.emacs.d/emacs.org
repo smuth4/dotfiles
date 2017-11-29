@@ -313,6 +313,10 @@ signalled."
 #+BEGIN_SRC emacs-lisp
 (put 'upcase-region 'disabled nil)
 #+END_SRC
+*** Use bash for TRAMP
+#+BEGIN_SRC emacs-lisp
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+#+END_SRC
 ** E-mail
 #+BEGIN_SRC emacs-lisp
 (use-package mu4e
