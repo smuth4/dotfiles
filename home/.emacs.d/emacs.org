@@ -176,6 +176,20 @@ Ever, if I ruled the world.
   :init (custom-set-variables '(coffee-tab-width 2)))
 #+END_SRC
 
+**** reST
+
+#+BEGIN_SRC emacs-lisp
+(use-package coffee-mode
+  :mode "\\.rst$"
+  :init (custom-set-variables
+          '(rst-indent-comment 4)
+          '(rst-indent-field 4)
+          '(rst-indent-literal-minimized 3)
+          '(rst-indent-literal-normal 4)
+          '(rst-indent-width 4)
+         ))
+#+END_SRC
+
 **** Markdown
 
 #+BEGIN_SRC emacs-lisp
