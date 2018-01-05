@@ -2,8 +2,8 @@
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
-PATH=$PATH:~/bin:~/.local/bin
+# https://security.stackexchange.com/a/117548
+PATH=~/bin:~/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 export PATH
 
 # Define some colors first:

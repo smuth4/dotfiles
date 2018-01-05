@@ -1,6 +1,7 @@
 #!/bin/bash
 # Hardcode $PATH, primarily for debian
-PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+# https://security.stackexchange.com/a/117548
+PATH=~/bin:~/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
 # Check for an interactive session
 [ -z "$PS1" ] && return
@@ -20,8 +21,6 @@ export HISTSIZE=100000
 export CLICOLOR=1 # Enable colorized ls on FreeBSD
 
 shopt -s checkwinsize
-
-PATH=$PATH:~/bin:~/.local/bin
 
 export EDITOR=emacs
 export PAGER=less
