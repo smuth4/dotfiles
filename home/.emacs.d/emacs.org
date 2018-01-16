@@ -179,7 +179,7 @@ Ever, if I ruled the world.
 **** reST
 
 #+BEGIN_SRC emacs-lisp
-(use-package coffee-mode
+(use-package rst-mode
   :mode "\\.rst$"
   :init (custom-set-variables
           '(rst-indent-comment 4)
