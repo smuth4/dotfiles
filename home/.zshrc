@@ -1,11 +1,8 @@
-[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 # https://security.stackexchange.com/a/117548
 PATH=~/bin:~/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 export PATH
 
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 # Define some colors first:
 red='\033[0;31m'
 #RED='\033[1;31m'
