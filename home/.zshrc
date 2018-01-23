@@ -55,7 +55,8 @@ ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias 
 
 if [[ -e /usr/share/terminfo/x/xterm-256color || \
         -e /lib/terminfo/x/xterm-256color || \
-        -e /opt/local/share/terminfo/78/xterm-256color ]]; then # OS X
+        -e /opt/local/share/terminfo/78/xterm-256color || \
+        -e /usr/share/terminfo/78/xterm-256color ]]; then # OS X
   export TERM='xterm-256color'
 else
   export TERM='xterm-color'
