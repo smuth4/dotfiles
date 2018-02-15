@@ -75,6 +75,7 @@ Ever, if I ruled the world.
 ** Org-mode
 
 *** Use faux-tex super/subscripts
+#+BEGIN_SRC emacs-lisp
 (setq org-use-sub-superscripts '{})
 (setq org-export-with-sub-superscripts '{})
 #+END_SRC
