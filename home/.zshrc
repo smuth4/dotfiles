@@ -50,7 +50,9 @@ if [[ "$SSH_AGENT_PID" == "" && -e ~/.ssh-agent-thing ]]; then
 fi
 ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
-if [[ "$TERM" = xterm* || \
+if [[ -n "$TMUX" ]]; then
+  export TERM='screen-256color'
+elif [[ "$TERM" = xterm* || \
         -e /usr/share/terminfo/x/xterm-256color || \
         -e /lib/terminfo/x/xterm-256color || \
         -e /opt/local/share/terminfo/78/xterm-256color || \
