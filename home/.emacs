@@ -63,27 +63,35 @@
 ;;;;;;;;;;;;;;;;;;;;;;
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
  '(inhibit-startup-screen t)
- ;;'(org-agenda-files (quote ("~/org/projects.org" "~/org/todo.org" "~/org/dates.org")))
- ;;'(org-archive-location ".%s_archive::"))
-)
+ '(package-selected-packages
+   (quote
+    (markdown-mode terraform-mode s json-mode htmlize org zenburn-theme yaml-mode use-package projectile php-mode magit flycheck auto-complete auto-compile)))
+ '(rst-indent-comment 4)
+ '(rst-indent-field 4)
+ '(rst-indent-literal-minimized 3)
+ '(rst-indent-literal-normal 4)
+ '(rst-indent-width 4))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Start moving stuff to org-babel
 ;;;;;;;;;;;;;;;;;;;;;;
 
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 ;(setq package-enable-at-startup nil)
 (org-babel-load-file "~/.emacs.d/emacs.org")
 
 (provide '.emacs)
 ;;; .emacs ends here
+(put 'downcase-region 'disabled nil)
