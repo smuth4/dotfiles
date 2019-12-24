@@ -169,6 +169,29 @@ Ever, if I ruled the world.
 
 *** Languages
 
+**** Simple mode associations
+
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :mode "\\.md$")
+(use-package json-mode
+  :mode "\\.json$")
+(use-package yaml-mode
+  :mode "\\.yml$")
+(use-package dockerfile-mode
+  :mode "^Dockerfile$")
+(use-package lua-mode
+  :mode "\\.lua$")
+(use-package toml-mode
+  :mode "\\.toml$")
+(use-package systemd-mode
+  :mode "\\.(service|mount|socket)$")
+(use-package ruby-mode
+     :mode "\\.rb$")
+(use-package adoc-mode
+     :mode "\\.adoc$")
+#+END_SRC
+
 **** Shell
 
 #+BEGIN_SRC emacs-lisp
@@ -196,63 +219,6 @@ Ever, if I ruled the world.
           '(rst-indent-literal-normal 4)
           '(rst-indent-width 4)
          ))
-#+END_SRC
-
-**** Markdown
-
-#+BEGIN_SRC emacs-lisp
-(use-package markdown-mode
-  :mode "\\.md$")
-#+END_SRC
-
-**** JSON
-
-#+BEGIN_SRC emacs-lisp
-(use-package json-mode
-  :mode "\\.json$")
-#+END_SRC
-
-**** YAML
-
-#+BEGIN_SRC emacs-lisp
-(use-package yaml-mode
-  :mode "\\.yml$")
-#+END_SRC
-
-**** Docker
-
-#+BEGIN_SRC emacs-lisp
-(use-package dockerfile-mode
-  :mode "^Dockerfile$")
-#+END_SRC
-
-**** LUA
-
-#+BEGIN_SRC emacs-lisp
-(use-package lua-mode
-  :mode "\\.lua$")
-#+END_SRC
-
-**** TOML
-
-#+BEGIN_SRC emacs-lisp
-(use-package toml-mode
-  :mode "\\.toml$")
-#+END_SRC
-
-**** Systemd
-
-#+BEGIN_SRC emacs-lisp
-(use-package systemd-mode
-  :mode "\\.(service|mount|socket)$")
-#+END_SRC
-
-
-**** Ruby
-
-#+BEGIN_SRC emacs-lisp
-(use-package ruby-mode
-     :mode "\\.rb$")
 #+END_SRC
 
 **** HTML
