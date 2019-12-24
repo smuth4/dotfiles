@@ -79,7 +79,7 @@ if [[ -e /etc/lsb-relase ]]; then
 fi
 
 if [[ -n "$TMUX" ]]; then
-  export TERM='screen-256colors'
+  export TERM='screen-256color'
 elif [[ -e /usr/share/terminfo/x/xterm-256color || \
         -e /lib/terminfo/x/xterm-256color || \
         -e /opt/local/share/terminfo/78/xterm-256color ]]; then # OS X
