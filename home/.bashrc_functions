@@ -58,3 +58,11 @@ ip-sort () {
 debchangelog () {
   zless "/usr/share/doc/$1/changelog.Debian.gz"
 }
+
+wanip () {
+    if [[ -z "$1" ]]; then
+        dig @resolver1.opendns.com myip.opendns.com +short
+    else
+        ssh "$@" dig @resolver1.opendns.com myip.opendns.com +short
+    fi
+}
