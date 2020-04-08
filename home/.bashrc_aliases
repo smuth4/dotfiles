@@ -10,8 +10,6 @@ fi
 # Ansible
 alias ap='ansible-playbook'
 
-alias kc='kubectl --kubeconfig=kube_config'
-
 # Modified commands
 alias emacs='emacs -nw'
 alias grep='grep --color=auto -D skip'
@@ -19,6 +17,7 @@ alias ping='ping -c 5'
 alias du='du -kh' # Makes a more readable output.
 alias df='df -kTh'
 alias mkdir='mkdir -pv'
+alias ag='ag --noaffinity'
 
 # Moving around
 alias ..="cd .."
@@ -59,8 +58,9 @@ alias gca='git commit --amend --no-edit'
 # Tmux alias
 alias tmux='tmux -u2'
 
-# mu4e
+# Emacs
 alias mu4e='emacs -f mu4e'
+alias magit='emacs -f magit'
 
 # Vagrant
 alias v='vagrant'
@@ -79,4 +79,4 @@ alias stripwhite="sed -i -e's/[[:space:]]*$//'"
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # k8s
-alias kc='kubectl --kubeconfig=kube_config'
+alias kc='kubectl --namespace=${K8S_NS:-default}'
