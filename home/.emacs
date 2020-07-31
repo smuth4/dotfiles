@@ -54,7 +54,7 @@
 
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(setq org-agenda-files (quote ("~/org/")))
+(setq org-agenda-files (quote ("~/src/org/")))
 (global-set-key "\C-ca" 'org-agenda)
 (setq org-archive-location "archive.org::")
 
