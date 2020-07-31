@@ -113,7 +113,7 @@ Ever, if I ruled the world.
 #+BEGIN_SRC emacs-lisp
 (org-babel-do-load-languages 'org-babel-load-languages
     '(
-        (sh . t)
+        (shell . t)
         (python . t)
     )
 )
