@@ -113,7 +113,7 @@ Ever, if I ruled the world.
 #+BEGIN_SRC emacs-lisp
 (org-babel-do-load-languages 'org-babel-load-languages
     '(
-        (sh . t)
+        (shell . t)
         (python . t)
     )
 )
@@ -176,8 +176,6 @@ Ever, if I ruled the world.
   :mode "\\.md$")
 (use-package json-mode
   :mode "\\.json$")
-(use-package yaml-mode
-  :mode "\\.yml$")
 (use-package dockerfile-mode
   :mode "^Dockerfile$")
 (use-package lua-mode
@@ -187,9 +185,30 @@ Ever, if I ruled the world.
 (use-package systemd-mode
   :mode "\\.(service|mount|socket)$")
 (use-package ruby-mode
-     :mode "\\.rb$")
+  :mode "\\.rb$")
 (use-package adoc-mode
-     :mode "\\.adoc$")
+  :mode "\\.adoc$")
+#+END_SRC
+
+**** Python
+
+#+BEGIN_SRC emacs-lisp
+(use-package elpy
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable)
+(setq elpy-rpc-python-command "python3")
+(setq python-shell-interpreter "python3"
+      python-shell-interpreter-args "-i"))
+#+END_SRC
+
+
+**** YAML
+
+#+BEGIN_SRC emacs-lisp
+(use-package yaml-mode
+  :mode "\\.ya?ml$")
+(setq flycheck-checker 'yaml-yamllint)
 #+END_SRC
 
 **** Shell
