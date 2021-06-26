@@ -22,6 +22,10 @@ extract () {
   fi
 }
 
+to-human () {
+  numfmt --to=iec-i --suffix=B --padding=7
+}
+
 solve () {
   echo "scale=4; $*" | bc;
 }
