@@ -45,9 +45,6 @@
 
 ;; Auto-install packages
 
-;; Re-initialize
-(package-initialize)
-
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Org-mode
 ;;;;;;;;;;;;;;;;;;;;;;
