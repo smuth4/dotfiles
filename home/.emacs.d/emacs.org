@@ -74,6 +74,11 @@ Ever, if I ruled the world.
 
 ** Org-mode
 
+*** Show links raw
+#+BEGIN_SRC emacs-lisp
+(setq org-descriptive-links nil)
+#+END_SRC
+
 *** Use faux-tex super/subscripts
 #+BEGIN_SRC emacs-lisp
 (setq org-use-sub-superscripts '{})
