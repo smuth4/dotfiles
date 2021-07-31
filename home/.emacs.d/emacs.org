@@ -322,9 +322,10 @@ signalled."
 
 *** Bind keys
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x C-r") 'sudo-edit)
-(global-set-key (kbd "C-c m") 'fc-calculate-region)
-(global-set-key (kbd "<f7>") 'compile)
+  (global-set-key (kbd "C-x C-r") 'sudo-edit)
+  (global-set-key (kbd "C-c m") 'fc-calculate-region)
+  (global-set-key (kbd "<f7>") 'compile)
+  (global-set-key (kbd "C-c s") 'org-insert-structure-template)
 #+END_SRC
 *** Follow symlinks in version control
 #+BEGIN_SRC emacs-lisp

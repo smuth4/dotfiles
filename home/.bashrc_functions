@@ -23,7 +23,7 @@ extract () {
 }
 
 to-human () {
-  numfmt --to=iec-i --suffix=B --padding=7
+  numfmt --to=iec-i --suffix=B --padding=7 "$@"
 }
 
 solve () {
