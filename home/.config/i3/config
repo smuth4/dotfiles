@@ -25,9 +25,11 @@ font pango:DejaVu Sans Mono 8
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec firefox
+exec --no-startup-id autotiling
+exec /usr/bin/firefox
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id $HOME/.config/i3/wallpaper.sh
+exec --no-startup-id /usr/bin/picom
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -104,16 +106,17 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:web"
-set $ws2 "2:term"
-set $ws3 "3:kp"
-set $ws4 "4:music"
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 ""
+set $ws_kp ""
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -145,6 +148,11 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+hide_edge_borders smart
+default_border pixel 0
+for_window [class=".*"] border pixel 1
+assign [class="^KeePassXC$"] $ws_kp
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
