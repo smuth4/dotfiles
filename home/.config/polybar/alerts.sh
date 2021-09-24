@@ -1,8 +1,10 @@
 #!/bin/bash
-url=https://alert.smuth.me/api/v1/alerts
-alerts="$(curl -s "$url" |& jq '.data[] | select(.status.state != "suppressed") | length' |& wc -l)"
+url=https://alerta.smuth.me/api/alerts/count
+alerts="$(curl -s "$url" |& jq '.statusCounts.open')"
 if ((alerts>0)); then
   echo "$alerts" #e077 
-else
+elif [[ $alerts == "null" && "$(curl -s "$url" |& jq -r '.status')" == "ok" ]]; then
   echo ""
+else
+  echo "ERR"
 fi
