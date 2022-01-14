@@ -18,22 +18,22 @@
 
 ; %%base16_template: polybar##default %%
 [colors]
-base00 = ee151515
-base01 = 202020
-base02 = 303030
-base03 = 505050
-base04 = b0b0b0
-base05 = d0d0d0
-base06 = e0e0e0
-base07 = f5f5f5
-base08 = fb9fb1
-base09 = eda987
-base0A = ddb26f
-base0B = acc267
-base0C = 12cfc0
-base0D = 6fc2ef
-base0E = e1a3ee
-base0F = deaf8f
+base00 = ee0c0d0e
+base01 = 2e2f30
+base02 = 515253
+base03 = 737475
+base04 = 959697
+base05 = b7b8b9
+base06 = dadbdc
+base07 = fcfdfe
+base08 = e31a1c
+base09 = e6550d
+base0A = dca060
+base0B = 31a354
+base0C = 80b1d3
+base0D = 3182bd
+base0E = 756bb1
+base0F = b15928
 
 ; %%base16_template_end%%
 
@@ -55,8 +55,13 @@ foreground = ${colors.foreground}
 
 modules-left = i3
 modules-center = mpd
-modules-right = alerts eth pulseaudio date
-height = 18
+modules-right = pacman rss alerts eth pulseaudio date menu-power
+height = 20
+
+[bar/secondary]
+inherit = bar/primary
+modules-right = eth pulseaudio date
+monitor = ${env:MONITOR:HDMI-1}
 
 [module/date]
 type = internal/date
@@ -90,16 +95,50 @@ format-disconnected = "Unkn"
 [module/alerts]
 type = custom/script
 exec = ~/.config/polybar/alerts.sh
-click-left = /usr/lib/firefox/firefox --new-tab https://alert.smuth.me
+click-left = /usr/lib/firefox/firefox --new-tab https://alerta.smuth.me
 background = ${colors.background}
 format-foreground = ${colors.alert}
+
+[module/pacman]
+type = custom/script
+exec = ~/.config/polybar/pacman.sh
+click-left = /usr/bin/alacritty -e sudo pacman -Syu
+background = ${colors.background}
+format-foreground = ${colors.base0A}
+interval = 300
+
+[module/rss]
+type = custom/script
+exec = ~/.config/polybar/rss.sh
+click-left = /usr/lib/firefox/firefox --new-tab https://miniflux.smuth.me
+background = ${colors.background}
+format-foreground = ${colors.base09}
 
 [module/mpd]
 type = internal/mpd
 host = 127.0.0.1
 port = 6600
-label-song = %artist% - %title%
-label-song-background = ${colors.base03}
+icon-pause = 
+icon-play = 
+icon-prev = 
+icon-next = 
+format-online = <icon-prev> <icon-play> <icon-pause> <label-song> <icon-next>
+format-paused = <icon-play> <label-song>
+label-song = %album-artist% - %title%
+format-online-background = ${colors.base0D}
+format-online-foreground = ${colors.base00}
+
+[module/menu-power]
+type = custom/menu
+expand-right = false
+label-open = 
+label-close = X
+label-separator = |
+format-spacing = 1
+menu-0-0 = Reboot
+menu-0-0-exec = systemctl reboot
+menu-0-1 = Shutdown
+menu-0-1-exec = systemctl poweroff
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -133,7 +172,7 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %name%
-label-focused-background = ${colors.background-alt}
+label-focused-background = ${colors.base0C}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 1
 

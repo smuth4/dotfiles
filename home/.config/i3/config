@@ -182,27 +182,27 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # %%base16_template: i3##colors %%
-## Base16 Chalk
-# Author: Chris Kempson (http://chriskempson.com)
+## Base16 Brewer
+# Author: Timothée Poisot (http://github.com/tpoisot)
 #
 # You can use these variables anywhere in the i3 configuration file.
 
-set $base00 #151515
-set $base01 #202020
-set $base02 #303030
-set $base03 #505050
-set $base04 #b0b0b0
-set $base05 #d0d0d0
-set $base06 #e0e0e0
-set $base07 #f5f5f5
-set $base08 #fb9fb1
-set $base09 #eda987
-set $base0A #ddb26f
-set $base0B #acc267
-set $base0C #12cfc0
-set $base0D #6fc2ef
-set $base0E #e1a3ee
-set $base0F #deaf8f
+set $base00 #0c0d0e
+set $base01 #2e2f30
+set $base02 #515253
+set $base03 #737475
+set $base04 #959697
+set $base05 #b7b8b9
+set $base06 #dadbdc
+set $base07 #fcfdfe
+set $base08 #e31a1c
+set $base09 #e6550d
+set $base0A #dca060
+set $base0B #31a354
+set $base0C #80b1d3
+set $base0D #3182bd
+set $base0E #756bb1
+set $base0F #b15928
 
 # %%base16_template_end%%
 
