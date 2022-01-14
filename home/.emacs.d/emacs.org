@@ -215,9 +215,10 @@ Ever, if I ruled the world.
 **** YAML
 
 #+BEGIN_SRC emacs-lisp
-(use-package yaml-mode
-  :mode "\\.ya?ml$")
-(setq flycheck-checker 'yaml-yamllint)
+  (use-package yaml-mode
+      :ensure t
+      :mode "\\.ya?ml$")
+  (setq flycheck-checker 'yaml-yamllint)
 #+END_SRC
 
 **** Shell
