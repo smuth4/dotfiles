@@ -177,22 +177,26 @@ Ever, if I ruled the world.
 **** Simple mode associations
 
 #+BEGIN_SRC emacs-lisp
-(use-package markdown-mode
-  :mode "\\.md$")
-(use-package json-mode
-  :mode "\\.json$")
-(use-package dockerfile-mode
-  :mode "^Dockerfile$")
-(use-package lua-mode
-  :mode "\\.lua$")
-(use-package toml-mode
-  :mode "\\.toml$")
-(use-package systemd-mode
-  :mode "\\.(service|mount|socket)$")
-(use-package ruby-mode
-  :mode "\\.rb$")
-(use-package adoc-mode
-  :mode "\\.adoc$")
+  (use-package markdown-mode
+    :mode "\\.md$")
+  (use-package json-mode
+    :mode "\\.json$")
+  (use-package jsonnet-mode
+    :mode "\\.jsonnet$")
+  (use-package dockerfile-mode
+    :mode "^Dockerfile$")
+  (use-package lua-mode
+    :mode "\\.lua$")
+  (use-package toml-mode
+    :mode "\\.toml$")
+  (use-package systemd-mode
+    :mode "\\.(service|mount|socket)$")
+  (use-package ruby-mode
+    :mode "\\.rb$")
+  (use-package adoc-mode
+    :mode "\\.adoc$")
+  (use-package diff-mode
+    :mode "^COMMIT_EDITMSG$")
 #+END_SRC
 
 **** Python
