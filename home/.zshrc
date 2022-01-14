@@ -81,6 +81,11 @@ if [[ -e "$HOME/.homesick/repos/homeshick/homeshick.sh" ]]; then
   homeshick --quiet --batch --force refresh
 fi
 
+if hash go 2>/dev/null; then
+  export GOPATH=$HOME/go
+  export PATH="$PATH:$GOPATH/bin"
+fi
+
 if [[ -e "$HOME/.zsh.completions.d" ]]; then
   fpath=("$HOME/.zsh.completions.d" "${fpath[@]}")
 fi

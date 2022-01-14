@@ -89,7 +89,7 @@ else
 fi
 
 if hash go 2>/dev/null; then
-  export GOPATH=$HOME/work
+  export GOPATH=$HOME/go
   export PATH="$PATH:$GOPATH/bin"
 fi
 
