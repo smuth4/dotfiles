@@ -11,10 +11,12 @@ red='\033[0;31m'
 #RED='\033[1;31m'
 blue='\033[0;34m'
 #BLUE='\033[1;34m'
+green='\033[0;32m'
 cyan='\033[0;36m'
 #CYAN='\033[1;36m'
 NC='\033[0m'              # No Color
 
+declare PROMPT_COMMAND="history -a;history -r" # Insta-update the history like zsh
 export HISTFILESIZE=300000    # save 300000 commands
 export HISTCONTROL=ignoredups    # no duplicate lines in the history.
 export HISTSIZE=100000
@@ -56,7 +58,14 @@ ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias 
 [[ -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
   source /usr/local/share/bash-completion/bash_completion.sh
 
-PS1='[\u@\h \W]$(git_prompt)\$ ' # the git_prompt function is in the .bashrc_functions file
+PS1_CMD_CHK() {
+  local e=$?
+  echo -e -n "$blue$(git_prompt)$NC"
+  (( e )) && echo -e -n "$red"
+  echo -e -n " \$"$NC
+  return $e
+}
+PS1="$red"'\h'"$NC"':'"$green"'\W'"$NC"'$(PS1_CMD_CHK) '"$NC" # the git_prompt function is in the .bashrc_functions file
 
 # Activate homeshick if available
 
@@ -72,8 +81,7 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
 fi
 
 if [[ -e /etc/lsb-relase ]]; then
-  if ! hash -r emacs; then
-    sudo apt install vile
+  if ! hash -r emacs && hash -r vile; then
     alias emacs=vile
   fi
 fi
@@ -91,6 +99,10 @@ fi
 if hash go 2>/dev/null; then
   export GOPATH=$HOME/go
   export PATH="$PATH:$GOPATH/bin"
+fi
+
+if [[ -d "${KREW_ROOT:-$HOME/.krew}/bin" ]]; then
+  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
 if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
