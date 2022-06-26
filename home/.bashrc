@@ -25,7 +25,7 @@ export CLICOLOR=1 # Enable colorized ls on FreeBSD
 shopt -s checkwinsize
 
 export EDITOR=emacs
-export PAGER=less
+export PAGER='less -R'
 
 # Turn off system mail checking
 shopt -u mailwarn
@@ -38,19 +38,19 @@ stty start undef
 # Stop debian from telling me what command I meant to use
 unset command_not_found_handle
 
-if [ -e ~/.bashrc_aliases ]; then
-  . ~/.bashrc_aliases
+if [ -e .bashrc_aliases ]; then
+  . .bashrc_aliases
 fi
 
-if [ -e ~/.bashrc_functions ]; then
-  . ~/.bashrc_functions
+if [ -e .bashrc_functions ]; then
+  . .bashrc_functions
 fi
 
 if ! pgrep -u "$UID" ssh-agent > /dev/null; then
   ssh-agent > ~/.ssh-agent-thing
 fi
 if [[ "$SSH_AGENT_PID" == "" && -e ~/.ssh-agent-thing ]]; then
-  eval $(<~/.ssh-agent-thing)
+  eval $(< ~/.ssh-agent-thing)
 fi
 ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
