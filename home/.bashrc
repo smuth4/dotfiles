@@ -58,21 +58,18 @@ ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias 
 [[ -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
   source /usr/local/share/bash-completion/bash_completion.sh
 
-PS1_CMD_CHK() {
-  local e=$?
-  echo -e -n "$blue$(git_prompt)$NC"
-  (( e )) && echo -e -n "$red"
-  echo -e -n " \$"$NC
-  return $e
-}
-PS1="$red"'\h'"$NC"':'"$green"'\W'"$NC"'$(PS1_CMD_CHK) '"$NC" # the git_prompt function is in the .bashrc_functions file
+PS1="\[$red\]"'\h'"\[$NC\]"':'"\[$green\]"'\W'"\[$NC\]"'\['"$blue"'\]$(git_prompt)'"\[$NC\]"' \$ ' # the git_prompt function is in the .bashrc_functions file
 
 # Activate homeshick if available
-
 if [[ -e "$HOME/.homesick/repos/homeshick/homeshick.sh" ]]; then
   source "$HOME/.homesick/repos/homeshick/homeshick.sh"
   source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
   homeshick --quiet --batch --force refresh
+fi
+
+if [[ -e /usr/local/etc/advanced-shell-history/config ]]; then
+  source /usr/local/etc/advanced-shell-history/config
+  source /usr/local/lib/advanced_shell_history/sh/bash
 fi
 
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
@@ -118,10 +115,10 @@ if [[ -e "$HOME/.bash.d" ]]; then
   done
 fi
 
-echo -ne $cyan$(hostname)$NC" - "
-echo -ne $red; uname -smr
-echo -ne $blue; date
-echo -ne $NC
+echo -ne "$cyan$(hostname)$NC - "
+echo -ne "$red"; uname -smr
+echo -ne "$blue"; date
+echo -ne "$NC"
 if [ -x /usr/games/fortune ]; then
   /usr/games/fortune -s     # makes our day a bit more fun
 elif [ -x /usr/bin/fortune ]; then
