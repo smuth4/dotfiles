@@ -57,6 +57,7 @@ Ever, if I ruled the world.
 *** Zenburn by default
 
 #+BEGIN_SRC emacs-lisp
+(set-face-background 'default "undefined")
 (use-package
  zenburn-theme
  :ensure t
@@ -140,6 +141,22 @@ Ever, if I ruled the world.
 (require 'auto-complete)
 #+END_SRC
 *** Packages
+**** lsp-mode
+
+#+begin_src emacs-lisp
+  (setq gc-cons-threshold 100000000) ;; 100mb
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  (use-package lsp-mode
+    :init
+    ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+    (setq lsp-keymap-prefix "C-c l")
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+           (python-mode . lsp)
+           ;; if you want which-key integration
+           (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
+#+end_src
+
 **** Flycheck
 
 #+BEGIN_SRC emacs-lisp
@@ -186,6 +203,7 @@ Ever, if I ruled the world.
   (use-package dockerfile-mode
     :mode "^Dockerfile$")
   (use-package lua-mode
+    :ensure t
     :mode "\\.lua$")
   (use-package toml-mode
     :mode "\\.toml$")
@@ -196,7 +214,7 @@ Ever, if I ruled the world.
   (use-package adoc-mode
     :mode "\\.adoc$")
   (use-package diff-mode
-    :mode "^COMMIT_EDITMSG$")
+    :mode "COMMIT_EDITMSG")
 #+END_SRC
 
 **** Python
