@@ -16,9 +16,9 @@ cyan='\033[0;36m'
 #CYAN='\033[1;36m'
 NC='\033[0m'              # No Color
 
-declare PROMPT_COMMAND="history -a;history -r" # Insta-update the history like zsh
+declare PROMPT_COMMAND="history -a;$PROMPT_COMMAND" # Insta-update the history like zsh
 export HISTFILESIZE=300000    # save 300000 commands
-export HISTCONTROL=ignoredups    # no duplicate lines in the history.
+export HISTCONTROL=ignoreboth:erasedups    # no duplicate lines in the history.
 export HISTSIZE=100000
 export CLICOLOR=1 # Enable colorized ls on FreeBSD
 
