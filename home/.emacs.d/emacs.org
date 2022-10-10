@@ -219,12 +219,16 @@ Ever, if I ruled the world.
     :ensure t
     :mode "\\.lua$")
   (use-package toml-mode
+    :defer t
     :mode "\\.toml$")
   (use-package systemd-mode
+    :defer t
     :mode "\\.(service|mount|socket)$")
   (use-package ruby-mode
+    :defer t
     :mode "\\.rb$")
   (use-package adoc-mode
+    :defer t
     :mode "\\.adoc$")
   (use-package diff-mode
     :mode "COMMIT_EDITMSG")
