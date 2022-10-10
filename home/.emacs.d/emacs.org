@@ -141,6 +141,19 @@ Ever, if I ruled the world.
 (require 'auto-complete)
 #+END_SRC
 *** Packages
+
+**** Poetry
+
+#+begin_src emacs-lisp
+  (use-package poetry
+    :ensure t
+    :hook
+    (python-mode . (lambda () (when (poetry-venv-exist-p)
+                                (setq-local lsp-pyls-server-command '("poetry" "run" "pyls"))
+                                (poetry-venv-workon))))
+    )
+#+end_src
+
 **** lsp-mode
 
 #+begin_src emacs-lisp
@@ -151,10 +164,10 @@ Ever, if I ruled the world.
     ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
     (setq lsp-keymap-prefix "C-c l")
     :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-           (python-mode . lsp)
+           (python-mode . lsp-deferred)
            ;; if you want which-key integration
            (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp)
+    :commands lsp lsp-deferred)
 #+end_src
 
 **** Flycheck
