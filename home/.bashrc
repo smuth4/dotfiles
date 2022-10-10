@@ -78,8 +78,8 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
 fi
 
 if [[ -e /etc/lsb-relase ]]; then
-  if ! hash -r emacs && hash -r vile; then
-    alias emacs=vile
+  if ! hash -r emacs && hash -r zile; then
+    alias emacs=zile
   fi
 fi
 
