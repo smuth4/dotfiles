@@ -195,12 +195,46 @@ Ever, if I ruled the world.
 **** Projectile
 
 #+BEGIN_SRC emacs-lisp
-(use-package projectile
-  :ensure t
-  :bind ("C-c p 1" . projectile-command-map)
-  :config
-(projectile-global-mode +1))
+  (use-package projectile
+    :ensure t
+    :defer t
+    :bind ("C-c p 1" . projectile-command-map)
+    :config
+  (projectile-global-mode +1))
 #+END_SRC
+
+**** Flyspell
+
+#+begin_src emacs-lisp
+  (use-package flyspell
+    :ensure t)
+  (defun flyspell-on-for-buffer-type ()
+    "Enable Flyspell appropriately for the major mode of the current buffer.  Uses `flyspell-prog-mode' for modes derived from `prog-mode', so only strings and comments get checked.  All other buffers get `flyspell-mode' to check all text.  If flyspell is already enabled, does nothing."
+    (interactive)
+    (if (not (symbol-value flyspell-mode)) ; if not already on
+      (progn
+        (if (derived-mode-p 'prog-mode)
+          (progn
+            (message "Flyspell on (code)")
+            (flyspell-prog-mode))
+          ;; else
+          (progn
+            (message "Flyspell on (text)")
+            (flyspell-mode 1)))
+        ;; I tried putting (flyspell-buffer) here but it didn't seem to work
+        )))
+
+  (defun flyspell-toggle ()
+    "Turn Flyspell on if it is off, or off if it is on.  When turning on, it uses `flyspell-on-for-buffer-type' so code-vs-text is handled appropriately."
+    (interactive)
+    (if (symbol-value flyspell-mode)
+        (progn ; flyspell is on, turn it off
+          (message "Flyspell off")
+          (flyspell-mode -1))
+        ; else - flyspell is off, turn it on
+        (flyspell-on-for-buffer-type)))
+  ;;(add-hook 'after-change-major-mode-hook 'flyspell-on-for-buffer-type)
+#+end_src
 
 *** Languages
 
@@ -208,7 +242,9 @@ Ever, if I ruled the world.
 
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
-    :mode "\\.md$")
+    :mode "\\.md$"
+    :init (add-to-list 'ispell-skip-region-alist '("^```" . "```$"))
+  )
   (use-package json-mode
     :mode "\\.json$")
   (use-package jsonnet-mode
@@ -266,36 +302,39 @@ Ever, if I ruled the world.
 **** Coffeescript
 
 #+BEGIN_SRC emacs-lisp
-(use-package coffee-mode
-  :mode "\\.coffee$"
-  :init (custom-set-variables '(coffee-tab-width 2)))
+  (use-package coffee-mode
+    :mode "\\.coffee$"
+    :defer t
+    :init (custom-set-variables '(coffee-tab-width 2)))
 #+END_SRC
 
 **** reST
 
 #+BEGIN_SRC emacs-lisp
-(use-package rst-mode
-  :mode "\\.rst$"
-  :init (custom-set-variables
-          '(rst-indent-comment 4)
-          '(rst-indent-field 4)
-          '(rst-indent-literal-minimized 3)
-          '(rst-indent-literal-normal 4)
-          '(rst-indent-width 4)
-         ))
+  (use-package rst-mode
+    :mode "\\.rst$"
+    :defer t
+    :init (custom-set-variables
+            '(rst-indent-comment 4)
+            '(rst-indent-field 4)
+            '(rst-indent-literal-minimized 3)
+            '(rst-indent-literal-normal 4)
+            '(rst-indent-width 4)
+           ))
 #+END_SRC
 
 **** HTML
 
 #+BEGIN_SRC emacs-lisp
-(use-package web-mode
-  :mode "\\.html$"
-  :bind (("C-c /" . web-mode-element-close))
-  :init
-  (progn (setq web-mode-code-indent-offset 2)
-         (setq web-mode-markup-indent-offset 2)
-         (setq web-mode-css-indent-offset 2)
-         (setq web-mode-enable-engine-detection t)))
+  (use-package web-mode
+    :mode "\\.html$"
+    :defer t
+    :bind (("C-c /" . web-mode-element-close))
+    :init
+    (progn (setq web-mode-code-indent-offset 2)
+           (setq web-mode-markup-indent-offset 2)
+           (setq web-mode-css-indent-offset 2)
+           (setq web-mode-enable-engine-detection t)))
 #+END_SRC
 
 ** General configuration
