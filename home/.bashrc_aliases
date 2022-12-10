@@ -76,4 +76,4 @@ alias venv='source ~/venv/bin/activate'
 alias stripwhite="sed -i -e's/[[:space:]]*$//'"
 
 # k8s
-alias kc='kubectl --namespace=${K8S_NS:-default}'
+alias kc='kubectl'
