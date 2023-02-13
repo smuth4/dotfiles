@@ -38,12 +38,12 @@ stty start undef
 # Stop debian from telling me what command I meant to use
 unset command_not_found_handle
 
-if [ -e .bashrc_aliases ]; then
-  . .bashrc_aliases
+if [ -e ~/.bashrc_aliases ]; then
+  . ~/.bashrc_aliases
 fi
 
-if [ -e .bashrc_functions ]; then
-  . .bashrc_functions
+if [ -e ~/.bashrc_functions ]; then
+  . ~/.bashrc_functions
 fi
 
 if ! pgrep -u "$UID" ssh-agent > /dev/null; then
