@@ -149,7 +149,7 @@ Ever, if I ruled the world.
     :ensure t
     :hook
     (python-mode . (lambda () (when (poetry-venv-exist-p)
-                                (setq-local lsp-pyls-server-command '("poetry" "run" "pyls"))
+                                (setq-local lsp-pyls-server-command '("poetry" "run" "pylsp"))
                                 (poetry-venv-workon))))
     )
 #+end_src
@@ -269,19 +269,6 @@ Ever, if I ruled the world.
   (use-package diff-mode
     :mode "COMMIT_EDITMSG")
 #+END_SRC
-
-**** Python
-
-#+BEGIN_SRC emacs-lisp
-(use-package elpy
-  :defer t
-  :init
-  (advice-add 'python-mode :before 'elpy-enable)
-(setq elpy-rpc-python-command "python3")
-(setq python-shell-interpreter "python3"
-      python-shell-interpreter-args "-i"))
-#+END_SRC
-
 
 **** YAML
 
