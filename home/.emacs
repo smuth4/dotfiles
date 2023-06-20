@@ -87,7 +87,9 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 ;(setq package-enable-at-startup nil)
-(org-babel-load-file "~/.emacs.d/emacs.org")
+(unless (version< emacs-version "27.2")
+  (org-babel-load-file "~/.emacs.d/emacs.org")
+)
 
 (provide '.emacs)
 ;;; .emacs ends here
