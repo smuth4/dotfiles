@@ -67,6 +67,10 @@ if [[ -e "$HOME/.homesick/repos/homeshick/homeshick.sh" ]]; then
   homeshick --quiet --batch --force refresh
 fi
 
+if hash terraform 2>/dev/null; then
+  complete -C "$(which terraform)" terraform
+fi
+
 if [[ -e /usr/local/etc/advanced-shell-history/config ]]; then
   source /usr/local/etc/advanced-shell-history/config
   source /usr/local/lib/advanced_shell_history/sh/bash
