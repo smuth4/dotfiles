@@ -112,6 +112,12 @@ if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
   source "$NVM_DIR/nvm.sh"
 fi
 
+if [[ -s "$HOME/.zvm/self" ]]; then
+  export ZVM_INSTALL="$HOME/.zvm/self"
+  export PATH="$HOME/.zvm/bin:$PATH"
+  export PATH="$ZVM_INSTALL/:$PATH"
+fi
+
 # Import misc config files
 
 if [[ -e "$HOME/.bash.d" ]]; then
