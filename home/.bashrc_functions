@@ -37,7 +37,7 @@ git_prompt () {
     return 0
   fi
   GIT_HEAD="$(cat "$GIT_DIR"/HEAD)"
-  GIT_BRANCH=${GIT_HEAD##*/}
+  GIT_BRANCH=${GIT_HEAD##ref: refs/heads/}
   if [ ${#GIT_BRANCH} -eq 40 ]; then
     GIT_BRANCH="(no branch)"
   fi
@@ -45,8 +45,7 @@ git_prompt () {
   if [ -z "$STATUS" ]; then
     git_marker=""
   else
-    echo -e "$STATUS" | grep -q '^ [A-Z\?]'
-    if [ $? -eq 0 ]; then
+    if echo -e "$STATUS" | grep -q '^ [A-Z\?]'; then
       git_marker="*"
     else
       git_marker="+"
