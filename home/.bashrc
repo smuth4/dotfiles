@@ -98,20 +98,21 @@ else
   export TERM='xterm-color'
 fi
 
-if hash go 2>/dev/null; then
-  export GOPATH=$HOME/go
-  export PATH="$PATH:$GOPATH/bin"
-fi
+# Golang version manager
+[[ -s "/home/smuth/.gvm/scripts/gvm" ]] && source "/home/smuth/.gvm/scripts/gvm"
 
 if [[ -d "${KREW_ROOT:-$HOME/.krew}/bin" ]]; then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
+# Node version manager
 if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
   export NVM_DIR="$HOME/.nvm"
   source "$NVM_DIR/nvm.sh"
+  [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion  
 fi
 
+# Zig version manager
 if [[ -s "$HOME/.zvm/self" ]]; then
   export ZVM_INSTALL="$HOME/.zvm/self"
   export PATH="$HOME/.zvm/bin:$PATH"
