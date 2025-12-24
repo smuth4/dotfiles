@@ -37,5 +37,6 @@ fi
 # xclock -geometry 50x50-1+1 &
 # xterm -geometry 80x50+494+51 &
 # xterm -geometry 80x20+494-0 &
-xrandr --output DP-1 --auto --left-of HDMI-0
-exec i3
+#xrandr --output DP-1 --auto --left-of HDMI-0
+#exec qtile start
+#exec i3
