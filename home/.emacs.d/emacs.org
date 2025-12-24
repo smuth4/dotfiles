@@ -167,6 +167,7 @@ Ever, if I ruled the world.
            (python-mode . lsp-deferred)
            (c++-mode . lsp-deferred)
            (go-mode . lsp-deferred)
+           (zig-mode . lsp-deferred)
            (scala-mode . lsp-deferred)
            ;; if you want which-key integration
            (lsp-mode . lsp-enable-which-key-integration))
@@ -279,6 +280,9 @@ Ever, if I ruled the world.
     :mode "\\.gptel$")
   (use-package gptel-mode
     :mode "\\.gptel$")
+  (use-package zig-mode
+      :ensure t
+      :mode "\\.zig$")
 #+END_SRC
 
 **** YAML

@@ -66,9 +66,7 @@
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
  '(inhibit-startup-screen t)
- '(package-selected-packages
-   (quote
-    (markdown-mode terraform-mode s json-mode htmlize org zenburn-theme yaml-mode use-package projectile php-mode magit flycheck auto-complete auto-compile)))
+ '(package-selected-packages nil)
  '(rst-indent-comment 4)
  '(rst-indent-field 4)
  '(rst-indent-literal-minimized 3)
