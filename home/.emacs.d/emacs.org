@@ -186,13 +186,17 @@ Ever, if I ruled the world.
 **** Magit
 
 #+BEGIN_SRC emacs-lisp
-(use-package magit
-  :ensure t
-  :commands (magit-init
-             magit-status
-             magit-diff
-             magit-commit)
-  :bind (("C-x g" . magit-status)))
+    (use-package magit
+      :ensure t
+      :commands (magit-init
+                 magit-status
+                 magit-diff
+                 magit-commit)
+      :bind (("C-x g" . magit-status)))
+  (use-package gptel-magit
+    :ensure t
+    :config (setq gptel-magit-commit-prompt gptel-magit-prompt-zed)
+    :hook (magit-mode . gptel-magit-install))
 #+END_SRC
 
 **** Projectile
@@ -271,6 +275,10 @@ Ever, if I ruled the world.
     :mode "\\.adoc$")
   (use-package diff-mode
     :mode "COMMIT_EDITMSG")
+  (use-package markdown-mode
+    :mode "\\.gptel$")
+  (use-package gptel-mode
+    :mode "\\.gptel$")
 #+END_SRC
 
 **** YAML
@@ -446,6 +454,39 @@ signalled."
 (setq  mu4e-headers-date-format "%Y-%m-%d %H:%M")
 ;; endref
 #+END_SRC
+
+#+begin_src emacs-lisp
+    (use-package gptel
+      :ensure t
+      :config
+      (custom-set-faces
+       '(gptel-response-fringe-highlight ((t (:inherit outline-1)))))
+      (require 'gptel-integrations)
+        (setq gptel-model 'claude-sonnet-4-20250514
+            gptel-default-mode 'org-mode
+            gptel-backend
+            (gptel-make-bedrock "AWS"
+              :stream t
+              :region "us-east-1"
+              ;; subset of gptel--bedrock-models
+              :models '(claude-sonnet-4-20250514)
+              ;; Model region for cross-region inference profiles. Required for models such
+              ;; as Claude without on-demand throughput support. One of 'apac, 'eu or 'us.
+              ;; https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-use.html
+              :model-region 'us))
+        :bind (("C-c RET" . gptel-send)
+               ("C-c C-k" . gptel-abort)))
+  (use-package mcp
+    :ensure t
+    :config
+    ;; Enable MCP integration with gptel
+    (setq mcp-hub-servers
+          '(("git" . (:command "mcp-server-git" :args ("-r" "~/src/aria-devops")))))
+    (setq mcp-gptel-integration t)
+    ;; Configure MCP servers if needed
+    ;; (add-hook 'gptel-mode-hook 'mcp-mode))
+    )
+#+end_src
 
 ** Shortcuts
 
