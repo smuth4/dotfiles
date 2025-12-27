@@ -59,8 +59,8 @@ alias gca='git commit --amend --no-edit'
 alias tmux='tmux -u2'
 
 # Emacs
-alias mu4e='emacs -f mu4e'
-alias magit='emacs -f magit'
+alias magit='emacs -nw --eval "(progn (call-interactively '"'"'magit) (delete-other-windows) )"'
+alias gptel='emacs -nw --eval "(progn (call-interactively '"'"'gptel) (delete-other-windows) )"'
 
 # Vagrant
 alias v='vagrant'

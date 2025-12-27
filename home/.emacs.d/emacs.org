@@ -420,66 +420,26 @@ signalled."
 #+BEGIN_SRC emacs-lisp
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
 #+END_SRC
-** E-mail
-#+BEGIN_SRC emacs-lisp
-(use-package mu4e
-  :commands (mu4e))
-;; don't save message to Sent Messages, Gmail/IMAP takes care of this
-(setq mu4e-sent-messages-behavior 'delete)
-
-(setq mu4e-drafts-folder "/[Gmail].Drafts")
-(setq mu4e-sent-folder   "/[Gmail].Sent Mail")
-(setq mu4e-trash-folder  "/[Gmail].Trash")
-
-;; setup some handy shortcuts
-;; you can quickly switch to your Inbox -- press ``ji''
-;; then, when you want archive some messages, move them to
-;; the 'All Mail' folder by pressing ``ma''.
-(setq mu4e-maildir-shortcuts
-    '( ("/INBOX"               . ?i)
-       ("/[Gmail].Sent Mail"   . ?s)
-       ("/[Gmail].Trash"       . ?t)
-       ("/[Gmail].All Mail"    . ?a)))
-
-;; allow for updating mail using 'U' in the main view:
-(setq mu4e-get-mail-command "offlineimap")
-
-;; ref: http://emacs.readthedocs.io/en/latest/mu4e__email_client.html
-;; ref: http://emacs.stackexchange.com/questions/3051/how-can-i-use-eww-as-a-renderer-for-mu4e
-(defun my-render-html-message ()
-  (let ((dom (libxml-parse-html-region (point-min) (point-max))))
-    (erase-buffer)
-    (shr-insert-document dom)
-    (goto-char (point-min))))
-(setq mu4e-html2text-command 'my-render-html-message)
-;; endref
-
-;; give me ISO(ish) format date-time stamps in the header list
-(setq  mu4e-headers-date-format "%Y-%m-%d %H:%M")
-;; endref
-#+END_SRC
-
+** GPT
 #+begin_src emacs-lisp
-    (use-package gptel
-      :ensure t
-      :config
-      (custom-set-faces
-       '(gptel-response-fringe-highlight ((t (:inherit outline-1)))))
-      (require 'gptel-integrations)
-        (setq gptel-model 'claude-sonnet-4-20250514
-            gptel-default-mode 'org-mode
-            gptel-backend
-            (gptel-make-bedrock "AWS"
-              :stream t
-              :region "us-east-1"
-              ;; subset of gptel--bedrock-models
-              :models '(claude-sonnet-4-20250514)
-              ;; Model region for cross-region inference profiles. Required for models such
-              ;; as Claude without on-demand throughput support. One of 'apac, 'eu or 'us.
-              ;; https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-use.html
-              :model-region 'us))
-        :bind (("C-c RET" . gptel-send)
-               ("C-c C-k" . gptel-abort)))
+  (use-package gptel
+    :ensure t
+    :config
+    (custom-set-faces
+     '(gptel-response-fringe-highlight ((t (:inherit outline-1)))))
+    (require 'gptel-integrations)
+    (setq gptel-model 'google/gemini-3-flash-preview
+          gptel-default-mode 'org-mode
+          gptel-backend
+          (gptel-make-openai "AI/ML API"
+            :host "api.aimlapi.com"
+            :endpoint "/v1/chat/completions"
+            :stream t
+            :key (lambda () (getenv "AIML_API_KEY"))
+            :models '(deepseek-chat gemini-pro gpt-4o google/gemini-3-flash-preview)))
+    :bind (("C-c RET" . gptel-send)
+           ("C-c C-k" . gptel-abort))
+    )
   (use-package mcp
     :ensure t
     :config
