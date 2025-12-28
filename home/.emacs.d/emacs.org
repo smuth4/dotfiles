@@ -54,15 +54,17 @@ Ever, if I ruled the world.
 (add-hook 'find-file-not-found-functions #'make-parent-directory)
 #+END_SRC
 
-*** Zenburn by default
+*** Catppuccin by default
 
 #+BEGIN_SRC emacs-lisp
-(set-face-background 'default "undefined")
-(use-package
- zenburn-theme
- :ensure t
- )
-(load-theme 'zenburn t)
+  (use-package catppuccin-theme
+    :ensure t
+    :init
+    ;; Pick your flavor: 'latte, 'frappe, 'macchiato, or 'mocha
+    (setq catppuccin-flavor 'mocha)
+    :config
+    (load-theme 'catppuccin t)
+    (set-face-background 'default "undefined"))
 #+END_SRC
 
 *** UTF-8
