@@ -148,7 +148,7 @@ Ever, if I ruled the world.
 
 #+begin_src emacs-lisp
   (use-package poetry
-    :ensure t
+    :defer t
     :hook
     (python-mode . (lambda () (when (poetry-venv-exist-p)
                                 (setq-local lsp-pyls-server-command '("poetry" "run" "pylsp"))
@@ -179,11 +179,12 @@ Ever, if I ruled the world.
 **** Flycheck
 
 #+BEGIN_SRC emacs-lisp
-(use-package flycheck
-  :ensure t
-  :init
-  (add-hook 'after-init-hook #'global-flycheck-mode)
-  (setq flycheck-shellcheck-follow-sources nil))
+  (use-package flycheck
+    :ensure t
+    :defer t
+    :init
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+    (setq flycheck-shellcheck-follow-sources nil))
 #+END_SRC
 
 **** Magit
@@ -217,6 +218,7 @@ Ever, if I ruled the world.
 
 #+begin_src emacs-lisp
   (use-package flyspell
+    :defer t
     :ensure t)
   (defun flyspell-on-for-buffer-type ()
     "Enable Flyspell appropriately for the major mode of the current buffer.  Uses `flyspell-prog-mode' for modes derived from `prog-mode', so only strings and comments get checked.  All other buffers get `flyspell-mode' to check all text.  If flyspell is already enabled, does nothing."
@@ -258,7 +260,10 @@ Ever, if I ruled the world.
   (use-package json-mode
     :mode "\\.json$")
   (use-package jsonnet-mode
-    :mode "\\.jsonnet$")
+    :ensure t
+    :defer t
+    :commands jsonnet-mode
+    :mode ("\\.jsonnet$" . jsonnet-mode))
   (use-package dockerfile-mode
     :mode "^Dockerfile$")
   (use-package lua-mode
@@ -278,13 +283,9 @@ Ever, if I ruled the world.
     :mode "\\.adoc$")
   (use-package diff-mode
     :mode "COMMIT_EDITMSG")
-  (use-package markdown-mode
-    :mode "\\.gptel$")
-  (use-package gptel-mode
-    :mode "\\.gptel$")
   (use-package zig-mode
-      :ensure t
-      :mode "\\.zig$")
+    :ensure t
+    :mode "\\.zig$")
 #+END_SRC
 
 **** YAML
