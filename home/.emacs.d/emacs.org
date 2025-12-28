@@ -129,16 +129,18 @@ Ever, if I ruled the world.
 
 *** Set up use-package independently
 #+BEGIN_SRC emacs-lisp
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-(setq use-package-verbose t)
-(require 'use-package)
-(use-package auto-compile
-  :ensure t
-  :config (auto-compile-on-load-mode))
-(unless (package-installed-p 'auto-complete)
-  (package-install 'auto-complete))
-(require 'auto-complete)
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+  (setq use-package-verbose t)
+
+  (require 'use-package)
+  (use-package auto-compile
+    :ensure t
+    :defer
+    :config (auto-compile-on-load-mode))
+  (unless (package-installed-p 'auto-complete)
+    (package-install 'auto-complete))
+  (require 'auto-complete)
 #+END_SRC
 *** Packages
 
