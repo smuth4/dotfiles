@@ -7,6 +7,10 @@
   :PROPERTIES:
   :CUSTOM_ID: config
   :END:
+** Header
+#+begin_src emacs-lisp
+;;; -*- lexical-binding: t; -*-
+#+end_src
 ** Display
 *** No menu bar
 
