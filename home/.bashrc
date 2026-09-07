@@ -8,24 +8,31 @@ PATH=~/bin:~/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/
 
 # Define some colors first:
 red='\033[0;31m'
-#RED='\033[1;31m'
 blue='\033[0;34m'
-#BLUE='\033[1;34m'
 green='\033[0;32m'
 cyan='\033[0;36m'
-#CYAN='\033[1;36m'
-NC='\033[0m'              # No Color
+NC='\033[0m' # No Color
 
 declare PROMPT_COMMAND="history -a;$PROMPT_COMMAND" # Insta-update the history like zsh
-export HISTFILESIZE=300000    # save 300000 commands
-export HISTCONTROL=ignoreboth:erasedups    # no duplicate lines in the history.
+export HISTFILESIZE=300000
+export HISTCONTROL=ignoreboth:erasedups    # No duplicate lines in the history.
 export HISTSIZE=100000
 export CLICOLOR=1 # Enable colorized ls on FreeBSD
 
+# Enabled by default in bash 5, might as well be consistent
 shopt -s checkwinsize
 
 export EDITOR=emacs
-export PAGER='less -R'
+
+export PAGER='less'
+export LESS='-R'
+
+# systemd should be filling these in, but we'll be paranoid
+: "${XDG_CONFIG_HOME:=$HOME/.config}"
+: "${XDG_DATA_HOME:=$HOME/.local/share}"
+: "${XDG_CACHE_HOME:=$HOME/.cache}"
+: "${XDG_STATE_HOME:=$HOME/.local/state}"
+: "${XDG_RUNTIME_DIR:=$XDG_CACHE_HOME/runtime}"
 
 # Turn off system mail checking
 shopt -u mailwarn
@@ -46,11 +53,14 @@ if [ -e ~/.bashrc_functions ]; then
   . ~/.bashrc_functions
 fi
 
+# Auto-start the ssh-agent and load the settings
+SSH_AGENT_CONFIG="${XDG_STATE_HOME}/ssh-agent/config"
 if ! pgrep -u "$UID" ssh-agent > /dev/null; then
-  ssh-agent > ~/.ssh-agent-thing
+  mkdir -p "$(dirname "$SSH_AGENT_CONFIG")"
+  ssh-agent > "$SSH_AGENT_CONFIG"
 fi
-if [[ "$SSH_AGENT_PID" == "" && -e ~/.ssh-agent-thing ]]; then
-  eval $(< ~/.ssh-agent-thing)
+if [[ "$SSH_AGENT_PID" == "" && -e "$SSH_AGENT_CONFIG" ]]; then
+  eval $(< "$SSH_AGENT_CONFIG")
 fi
 ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
@@ -68,9 +78,6 @@ if [[ -e "$HOME/.homesick/repos/homeshick/homeshick.sh" ]]; then
   homeshick --quiet --batch --force refresh
 fi
 
-if hash terraform 2>/dev/null; then
-  complete -C "$(which terraform)" terraform
-fi
 
 if [[ -e /usr/local/etc/advanced-shell-history/config ]]; then
   source /usr/local/etc/advanced-shell-history/config
@@ -82,12 +89,14 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
+# Fall back to zile if emacs isn't installed
 if [[ -e /etc/lsb-relase ]]; then
   if ! hash -r emacs && hash -r zile; then
     alias emacs=zile
   fi
 fi
 
+# Try to detect the max supported color scheme
 if [[ -n "$TMUX" ]]; then
   export TERM='screen-256color'
 elif [[ -e /usr/share/terminfo/x/xterm-256color || \
@@ -101,6 +110,7 @@ fi
 # Golang version manager
 [[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
 
+# Krew: plugin manager for kubectl
 if [[ -d "${KREW_ROOT:-$HOME/.krew}/bin" ]]; then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
@@ -109,7 +119,7 @@ fi
 if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
   export NVM_DIR="$HOME/.nvm"
   source "$NVM_DIR/nvm.sh"
-  [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion  
+  [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
 fi
 
 # Zig version manager
@@ -119,8 +129,7 @@ if [[ -s "$HOME/.zvm/self" ]]; then
   export PATH="$ZVM_INSTALL/:$PATH"
 fi
 
-# Import misc config files
-
+# Import misc host-specifc config files
 if [[ -e "$HOME/.bash.d" ]]; then
   for f in "$HOME"/.bash.d/*; do
     . "$f"
@@ -132,7 +141,7 @@ echo -ne "$red"; uname -smr
 echo -ne "$blue"; date
 echo -ne "$NC"
 if [ -x /usr/games/fortune ]; then
-  /usr/games/fortune -s     # makes our day a bit more fun
+  /usr/games/fortune -s # makes our day a bit more fun
 elif [ -x /usr/bin/fortune ]; then
   /usr/bin/fortune -s
 fi
