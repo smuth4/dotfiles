@@ -79,6 +79,15 @@ Ever, if I ruled the world.
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 #+END_SRC
 
+*** Mouse wheel mode
+
+#+begin_src emacs-lisp
+'(mouse-wheel-mode t)
+'(mouse-wheel-scroll-amount
+  '(nil ((shift) . hscroll) ((meta))
+        ((control meta) . global-text-scale) ((control) . text-scale)))
+#+end_src
+
 ** Org-mode
 
 *** Set agenda location
