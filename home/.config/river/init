@@ -1,0 +1,3 @@
+#!/bin/sh
+nohup waybar &
+exec "$HOME/.local/bin/beansprout"
