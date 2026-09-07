@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;;; .emacs --- My emacs config file
 ;;; Commentary:
 
