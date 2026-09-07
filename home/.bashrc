@@ -99,7 +99,7 @@ else
 fi
 
 # Golang version manager
-[[ -s "/home/smuth/.gvm/scripts/gvm" ]] && source "/home/smuth/.gvm/scripts/gvm"
+[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
 
 if [[ -d "${KREW_ROOT:-$HOME/.krew}/bin" ]]; then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
