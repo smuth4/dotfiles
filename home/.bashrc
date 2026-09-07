@@ -58,7 +58,7 @@ ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias 
 [[ -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
   source /usr/local/share/bash-completion/bash_completion.sh
 
-ps1_host="$(hostname -f)"
+ps1_host="$(uname -n)"
 PS1="\[$red\]${ps1_host%.*.*}\[$NC\]"':'"\[$green\]"'\W'"\[$NC\]"'\['"$blue"'\]$(git_prompt)'"\[$NC\]"' \$ ' # the git_prompt function is in the .bashrc_functions file
 
 # Activate homeshick if available
@@ -127,7 +127,7 @@ if [[ -e "$HOME/.bash.d" ]]; then
   done
 fi
 
-echo -ne "$cyan$(hostname)$NC - "
+echo -ne "$cyan$(uname -n)$NC - "
 echo -ne "$red"; uname -smr
 echo -ne "$blue"; date
 echo -ne "$NC"
