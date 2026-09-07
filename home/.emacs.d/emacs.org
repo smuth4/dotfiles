@@ -68,7 +68,7 @@ Ever, if I ruled the world.
     (setq catppuccin-flavor 'mocha)
     :config
     (load-theme 'catppuccin t)
-    (set-face-background 'default "undefined"))
+    (set-face-background 'default "undefined")) ;; Hack to get a transparent background
 #+END_SRC
 
 *** UTF-8

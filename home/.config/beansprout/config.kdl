@@ -38,11 +38,6 @@ borders {
     color_focused "0x89b4fa"
     color_unfocused "0x1e1e2e"
 }
-// Bar widget; shows the time
-//bar {
-//    position top
-//    time_format "%H:%M"
-//}
 
 // Tag overlay widget; shown briefly when switching tags
 // Remove this block to disable the overlay entirely

@@ -9,20 +9,6 @@
     "pulseaudio",
     "tray"
   ],
-  "cpu": {
-    // "interval": 1,
-    //"format": "{usage:>2}%",
-    // "format-icons": [
-    //   "▁",
-    //   "▂",
-    //   "▃",
-    //   "▄",
-    //   "▅",
-    //   "▆",
-    //   "▇",
-    //   "█"
-    // ]
-  },
   "clock": {
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "actions": {
