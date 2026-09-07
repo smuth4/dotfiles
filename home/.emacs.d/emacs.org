@@ -146,18 +146,6 @@ Ever, if I ruled the world.
 #+END_SRC
 *** Packages
 
-**** Poetry
-
-#+begin_src emacs-lisp
-  (use-package poetry
-    :defer t
-    :hook
-    (python-mode . (lambda () (when (poetry-venv-exist-p)
-                                (setq-local lsp-pyls-server-command '("poetry" "run" "pylsp"))
-                                (poetry-venv-workon))))
-    )
-#+end_src
-
 **** lsp-mode
 
 #+begin_src emacs-lisp
