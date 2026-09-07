@@ -82,10 +82,10 @@ Ever, if I ruled the world.
 *** Mouse wheel mode
 
 #+begin_src emacs-lisp
-'(mouse-wheel-mode t)
-'(mouse-wheel-scroll-amount
-  '(nil ((shift) . hscroll) ((meta))
-        ((control meta) . global-text-scale) ((control) . text-scale)))
+(mouse-wheel-mode)
+(setq mouse-wheel-scroll-amount
+       '(nil ((shift) . hscroll) ((meta))
+             ((control meta) . global-text-scale) ((control) . text-scale)))
 #+end_src
 
 ** Org-mode
