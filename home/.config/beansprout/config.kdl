@@ -67,8 +67,8 @@ window_rules {
 
 keybinds {
     // Swap a window
-    spawn Mod4 Return foot
-    spawn Mod4 T foot
+    spawn Mod4 Return ghostty
+    spawn Mod4 T ghostty
     spawn Mod4 R fuzzel
     // Move focus up or down the windows stack
     focus_next_window Mod4 J
