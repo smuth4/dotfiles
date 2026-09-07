@@ -1,0 +1,153 @@
+/* Catppuccin Mocha — waybar style
+ * Clean, minimal, consistent module pills
+ */
+
+@import "mocha.css";
+
+* {
+    all: unset;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 10px;
+}
+
+window#waybar {
+    background-color: alpha(@base, 0.3);
+    border-bottom: 1px solid alpha(@teal, 0.3);
+}
+
+tooltip {
+    background-color: @mantle;
+    border: 1px solid @surface0;
+    border-radius: 8px;
+    padding: 6px 10px;
+}
+
+tooltip label {
+    color: @text;
+}
+
+menu {
+    background-color: @mantle;
+    border: 1px solid @surface0;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+menu menuitem {
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: @subtext1;
+}
+
+menu menuitem:hover {
+    background-color: @surface1;
+    color: @subtext0;
+}
+
+/* ---------- shared module pill ---------- */
+
+#workspaces,
+#clock,
+#pulseaudio,
+#battery,
+#network,
+#cpu,
+#memory,
+#tray {
+    color: @text;
+    padding: 4px;
+    margin: 3px;
+    border-radius: 5px;
+}
+
+/* ---------- workspaces ---------- */
+#workspaces {
+    padding: 2px 6px;
+}
+
+#workspaces button {
+    padding: 2px 8px;
+    margin: 2px;
+    border-radius: 8px;
+    color: @subtext1;
+    font-size: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.empty {
+    color: @overlay0;
+}
+
+#workspaces button.active {
+    color: @mauve;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    background-color: @red;
+    color: @crust;
+}
+
+/* ---------- clock ---------- */
+#clock {
+    color: @blue;
+    font-weight: bold;
+}
+
+/* ---------- pulseaudio ---------- */
+#pulseaudio {
+    color: @green;
+}
+
+#pulseaudio.muted {
+    color: @overlay0;
+}
+
+/* ---------- battery ---------- */
+#battery {
+    color: @green;
+}
+
+#battery.charging {
+    color: @teal;
+}
+
+#battery.warning:not(.charging) {
+    color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+    color: @red;
+}
+
+/* ---------- network ---------- */
+#network {
+    color: @peach;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+/* ---------- cpu / memory ---------- */
+#cpu {
+    color: @mauve;
+}
+
+#memory {
+    color: @lavender;
+}
+
+/* ---------- tray ---------- */
+#tray {
+    padding: 2px 10px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    background-color: @red;
+    border-radius: 8px;
+}
