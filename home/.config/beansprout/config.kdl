@@ -28,7 +28,7 @@ focus_next_direction next
 // Path to image to use as wallpaper
 // The same image is displayed on all outputs, but scaled separately
 // If this config is missing, then the background is blank black screen
-//wallpaper_image_path "~/Pictures/the_valley.png"
+wallpaper_image_path "~/.config/beansprout/wallpaper.jpg"
 
 // XCursor theme name; size in pixels is optional (default: 24)
 // cursor_theme "Adwaita" 24
