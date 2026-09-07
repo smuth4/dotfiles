@@ -60,25 +60,9 @@
 ;; System customizations
 ;;;;;;;;;;;;;;;;;;;;;;
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(coffee-tab-width 2)
- '(inhibit-startup-screen t)
- '(package-selected-packages nil)
- '(rst-indent-comment 4)
- '(rst-indent-field 4)
- '(rst-indent-literal-minimized 3)
- '(rst-indent-literal-normal 4)
- '(rst-indent-width 4))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; Prevent dynamic changes from polluting in-repo files
+(setq custom-file "~/.emacs.d/custom.el")
+(load-file "~/.emacs.d/custom.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Start moving stuff to org-babel
